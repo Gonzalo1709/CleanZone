@@ -12,6 +12,7 @@ import {
 import test1 from '/TestImages/test1.jpeg';
 import test2 from '/TestImages/test2.jpeg';
 import test3 from '/TestImages/test3.jpeg';
+import Traits from "@/components/traits";
 
 
 export default function Home() {
@@ -40,6 +41,7 @@ export default function Home() {
     </Carousel>
 
     <CalculatePrice />
+    <Traits />
     </>
   );
 }
