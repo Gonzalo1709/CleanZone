@@ -11,11 +11,6 @@ import {
     CarouselPrevious,
   } from "@/components/ui/carousel"
   import { type CarouselApi } from "@/components/ui/carousel";
-  
-  import test1 from 'https://czwebpageresources.s3.amazonaws.com/TestImages/test1.jpeg';
-  import test2 from '/TestImages/test2.jpeg';
-  import test3 from '/TestImages/test3.jpeg';
-  
 
 export default function HomepageCarousel() {
 
