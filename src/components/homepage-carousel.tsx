@@ -11,15 +11,17 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { type CarouselApi } from "@/components/ui/carousel";
+import { ChevronDown } from "lucide-react";
 
 export default function HomepageCarousel() {
-
   const [carouselApi, setCarouselApi] = useState<CarouselApi>();
 
   useEffect(() => {
-    if (!carouselApi) { return; }
+    if (!carouselApi) {
+      return;
+    }
     const interval = setInterval(() => {
-      carouselApi.scrollNext()
+      carouselApi.scrollNext();
     }, 5000);
     return () => clearInterval(interval);
   }, [carouselApi]);
@@ -32,10 +34,10 @@ export default function HomepageCarousel() {
           loop: true,
           duration: 30,
         }}
-        className="w-screen "
+        className="w-full "
         setApi={setCarouselApi}
       >
-        <div>
+        <div className="relative text-center">
           <CarouselContent>
             <CarouselItem>
               <Image
@@ -43,16 +45,16 @@ export default function HomepageCarousel() {
                 width={700}
                 height={700}
                 alt="Test Image"
-                className="object-cover aspect-auto h-full w-screen"
+                className="object-cover aspect-auto h-full w-full"
               />
             </CarouselItem>
             <CarouselItem>
               <Image
                 src="https://czwebpageresources.s3.amazonaws.com/TestImages/test2.jpeg"
-                width={500}
-                height={500}
+                width={700}
+                height={700}
                 alt="Test Image"
-                className="object-cover aspect-auto h-full w-screen"
+                className="object-cover aspect-auto h-full w-full"
               />
             </CarouselItem>
             <CarouselItem>
@@ -61,10 +63,11 @@ export default function HomepageCarousel() {
                 width={500}
                 height={500}
                 alt="Test Image"
-                className="object-cover aspect-auto h-full w-screen"
+                className="object-cover aspect-auto h-full w-full"
               />
             </CarouselItem>
           </CarouselContent>
+          <ChevronDown className="absolute bottom-1 right-[45.5%] animate-bounce" size={80} color="#FDFDFD"  />
         </div>
       </Carousel>
     </>
