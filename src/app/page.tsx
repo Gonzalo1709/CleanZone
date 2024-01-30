@@ -21,7 +21,7 @@ export default function Home() {
     <Carousel opts={{
         align: "center",
         loop: true,
-      }} className="w-screen">
+      }} className="w-screen ">
 
       
 
@@ -38,6 +38,8 @@ export default function Home() {
       </CarouselContent>
 
     </Carousel>
+
+    <CalculatePrice />
     </>
   );
 }
