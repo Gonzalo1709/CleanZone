@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { Menu, X } from "lucide-react";
 
 import { links } from "@/constants";
 
@@ -39,7 +40,7 @@ const Navbar = () => {
         {/* navbar for mobile */}
         <div className="ml-auto space-x-4 md:hidden text-lg py-5">
           <button type="button" onClick={handleClick} className="mt-2">
-            {/* {isOpen ? <X size={30} /> : <Menu size={30} />} */}s
+            {isOpen ? <X size={30} /> : <Menu size={30} />}
           </button>
 
           {isOpen ? (
