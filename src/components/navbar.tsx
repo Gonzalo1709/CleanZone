@@ -15,7 +15,7 @@ const Navbar = () => {
 
   return (
     <div>
-      <div className="md:py-5 md:px-3 flex items-center bg-[#2D9BF0] text-white h-[10vh]">
+      <div className="md:py-5 md:px-3 flex items-center bg-[#2D9BF0] text-white h-[10vh] max-h-[100px]">
         <div className="">
           <Link href="/">
             <h1 className="font-bold text-3xl hover:bg-gray-900 px-3 py-1 rounded-md">
