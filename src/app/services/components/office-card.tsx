@@ -4,7 +4,7 @@ import Image from "next/image";
 const OfficeCard = () => {
   return (
     <div className="">
-      <div className="grid bg-gray-300">
+      <div className="flex-col items-center content-center bg-gray-300">
         <div className="">
           <h1>Office</h1>
         </div>
