@@ -1,4 +1,5 @@
 import { Button } from "./ui/button";
+import Link from "next/link";
 
 function CalculatePrice() {
   return (
@@ -16,10 +17,14 @@ function CalculatePrice() {
       {/* Buttons */}
       <div className="p-10 pt-0 text-center lg:pt-10 lg:justify-center lg:justify-center">
         <div className="pb-3">
-          <Button variant="outline">VIEW OUR SERVICES</Button>
+          <Link href="/calculate-price">
+            <Button variant="outline">VIEW OUR SERVICES</Button>
+          </Link>
         </div>
         <div>
-          <Button variant="outline">CALCULATE YOUR PRICE</Button>
+          <Link href="/services">
+            <Button variant="outline">CALCULATE YOUR PRICE</Button>
+          </Link>
         </div>
       </div>
     </div>
