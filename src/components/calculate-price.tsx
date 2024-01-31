@@ -3,7 +3,7 @@ import Link from "next/link";
 
 function CalculatePrice() {
   return (
-    <div className="lg:flex lg:px-12">
+    <div className="lg:flex lg:px-12" id="calculate">
       {/* Text */}
       <div className="p-10">
         <p>

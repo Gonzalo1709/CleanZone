@@ -2,6 +2,7 @@
 import React from "react";
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import Link from "next/link";
 
 import {
   Carousel,
@@ -26,6 +27,16 @@ export default function HomepageCarousel() {
     return () => clearInterval(interval);
   }, [carouselApi]);
 
+  const handleScroll = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+    e.preventDefault();
+    const href = e.currentTarget.href;
+    const targetId = href.replace(/.*#/, "");
+    const elem = document.getElementById(targetId);
+    elem?.scrollIntoView({
+      behavior: "smooth",
+    });
+  };
+
   return (
     <>
       <Carousel
@@ -37,8 +48,8 @@ export default function HomepageCarousel() {
         className="w-full "
         setApi={setCarouselApi}
       >
-        <div className="relative text-center">
-          <CarouselContent>
+        <div className="relative text-center bg-black">
+          <CarouselContent className=" opacity-80 md:h-[90vh]">
             <CarouselItem>
               <Image
                 src="https://czwebpageresources.s3.amazonaws.com/TestImages/test1.jpeg"
@@ -67,7 +78,13 @@ export default function HomepageCarousel() {
               />
             </CarouselItem>
           </CarouselContent>
-          <ChevronDown className="absolute bottom-1 right-[45.5%] animate-bounce" size={80} color="#FDFDFD"  />
+          <Link href="#calculate" onClick={handleScroll} className="md:block hidden">
+            <ChevronDown
+              className="opacity-100 absolute bottom-5 right-[45.5%] animate-bounce bg-white bg-opacity-25 rounded-full"
+              size={80}
+              color="#FDFDFD"
+            />
+          </Link>
         </div>
       </Carousel>
     </>
