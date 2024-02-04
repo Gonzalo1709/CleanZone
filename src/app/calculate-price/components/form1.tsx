@@ -1,7 +1,8 @@
 "use client";
-import { zodResolver } from "@hookform/resolvers/zod";
-import React from "react";
+
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 
 import { Button } from "@/components/ui/button";
@@ -16,49 +17,79 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Switch } from "@/components/ui/switch";
+import { Checkbox } from "@/components/ui/checkbox";
 
 const formSchema = z.object({
   limpiarDespuesDeReforma: z.boolean(),
-  metrosCuadrados: z.number(),
-  numeroDeDespachosIndividuales: z.number(),
-  sueloDeMoqueta: z.boolean(),
-  limpiezaPeriodicaDeMoqueta: z.boolean(),
-  unaVezCada: z.number(),
-  totalDePuestosDeTrabajo: z.number(),
-  totalDeSillas: z.number(),
-  cocinaUOffice: z.boolean(),
-  cocinaUOfficeNumber: z.number(),
-  limpiarVajillas: z.boolean(),
-  cuartosDeBano: z.boolean(),
-  cuartosDeBanoNumber: z.number(),
-  observaciones: z.string(),
+  metrosCuadrados: z.coerce.number(),
+  // numeroDeDespachosIndividuales: z.number(),
+  // sueloDeMoqueta: z.boolean(),
+  // limpiezaPeriodicaDeMoqueta: z.boolean(),
+  // unaVezCada: z.number(),
+  // totalDePuestosDeTrabajo: z.number(),
+  // totalDeSillas: z.number(),
+  // cocinaUOffice: z.boolean(),
+  // cocinaUOfficeNumber: z.number(),
+  // limpiarVajillas: z.boolean(),
+  // cuartosDeBano: z.boolean(),
+  // cuartosDeBanoNumber: z.number(),
+  // observaciones: z.string(),
 });
 
+interface dataType {
+  limpiarDespuesDeReforma: boolean;
+  metrosCuadrados: number;
+}
+
 const FormOne = () => {
+  const [data, setData] = useState<dataType>();
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      limpiarDespuesDeReforma: true,
+      // limpiarDespuesDeReforma: false,
+      metrosCuadrados: 0,
     },
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
+    setData({
+      limpiarDespuesDeReforma: values.limpiarDespuesDeReforma,
+      metrosCuadrados: values.metrosCuadrados,
+    });
+    console.log({data});
   }
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+      <form onSubmit={form.handleSubmit(onSubmit)}>
         <FormField
           control={form.control}
           name="limpiarDespuesDeReforma"
           render={({ field }) => (
-            <FormItem className="">
-              <FormLabel>test</FormLabel>
+            <FormItem>
+              <FormLabel>Limpiar despues de reforma</FormLabel>
               <FormControl>
-                {/* <Input className="border-black" {...field} /> */}
+                <Switch
+                  className="data-[state=checked]:bg-green-500 data-[state=unchecked]:bg-red-500"
+                  checked={field.value}
+                  onCheckedChange={field.onChange}
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
 
-\              </FormControl>
+        <FormField
+          control={form.control}
+          name="metrosCuadrados"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Metros Cuadrados</FormLabel>
+              <FormControl>
+                <Input type="number" {...field} />
+              </FormControl>
               <FormMessage />
             </FormItem>
           )}

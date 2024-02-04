@@ -3,8 +3,8 @@ import Image from "next/image";
 
 const OurServices = () => {
   return (
-    <div className="my-16 mx-10 flex-row lg:flex ">
-      <div className="mb-20 lg:mb-0 lg:w-[70%]">
+    <div className="my-20 mx-10 lg:mx-14 flex-row lg:flex ">
+      <div className="mb-20 lg:mb-0 lg:w-[70%] lg:mr-7">
         <h1 className="text-4xl font-semibold text-[#cf2680] mb-6">
           Our Services
         </h1>

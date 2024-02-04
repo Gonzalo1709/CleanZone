@@ -5,7 +5,7 @@ import TraitsCard from "./traits-card";
 
 function Traits() {
   return (
-    <div className="py-10 flex-row lg:flex bg-[#f9ddeb] space-y-10 lg:space-y-0 lg:space-x-10 text-center">
+    <div className="py-20 flex-row lg:flex bg-[#76b9ed] space-y-10 lg:space-y-0 lg:space-x-10 text-center">
       <TraitsCard
         icon={<Clipboard size={50} color="#e81e8a" />}
         h1="test1"

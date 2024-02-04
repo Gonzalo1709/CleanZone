@@ -22,7 +22,7 @@ const Footer = () => {
       <div className="pb-2 mx-5 text-sm flex justify-center flex-col md:flex-row items-center text-center space-y-2 md:space-y-0">
         <div>
           <p className="">
-            © 2024 CACA S.A.C. All rights reserved.
+            © 2024 TEST. All rights reserved.
           </p>
         </div>
       </div>
