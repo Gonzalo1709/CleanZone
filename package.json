@@ -9,14 +9,11 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@aws-sdk/client-dynamodb": "^3.506.0",
-    "@aws-sdk/lib-dynamodb": "^3.506.0",
     "@hookform/resolvers": "^3.3.4",
     "@radix-ui/react-checkbox": "^1.0.4",
     "@radix-ui/react-label": "^2.0.2",
     "@radix-ui/react-slot": "^1.0.2",
     "@radix-ui/react-switch": "^1.0.3",
-    "aws-sdk": "^2.1550.0",
     "axios": "^1.6.7",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
