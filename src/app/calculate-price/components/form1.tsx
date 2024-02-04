@@ -19,27 +19,24 @@ import { Input } from "@/components/ui/input";
 import { Switch } from "@/components/ui/switch";
 import { Checkbox } from "@/components/ui/checkbox";
 
+import { dataType } from "@/lib/form-interface";
+
 const formSchema = z.object({
   limpiarDespuesDeReforma: z.boolean(),
   metrosCuadrados: z.coerce.number(),
-  // numeroDeDespachosIndividuales: z.number(),
-  // sueloDeMoqueta: z.boolean(),
-  // limpiezaPeriodicaDeMoqueta: z.boolean(),
-  // unaVezCada: z.number(),
-  // totalDePuestosDeTrabajo: z.number(),
-  // totalDeSillas: z.number(),
+  numeroDeDespachosIndividuales: z.coerce.number(),
+  sueloDeMoqueta: z.boolean(),
+  limpiezaPeriodicaDeMoqueta: z.boolean(),
+  unaVezCada: z.coerce.number(),
+  // totalDePuestosDeTrabajo: z.coerce.number(),
+  // totalDeSillas: z.coerce.number(),
   // cocinaUOffice: z.boolean(),
-  // cocinaUOfficeNumber: z.number(),
+  // cocinaUOfficeNumber: z.coerce.number(),
   // limpiarVajillas: z.boolean(),
   // cuartosDeBano: z.boolean(),
-  // cuartosDeBanoNumber: z.number(),
+  // cuartosDeBanoNumber: z.coerce.number(),
   // observaciones: z.string(),
 });
-
-interface dataType {
-  limpiarDespuesDeReforma: boolean;
-  metrosCuadrados: number;
-}
 
 const FormOne = () => {
   const [data, setData] = useState<dataType>();
@@ -49,6 +46,7 @@ const FormOne = () => {
     defaultValues: {
       // limpiarDespuesDeReforma: false,
       metrosCuadrados: 0,
+      numeroDeDespachosIndividuales: 0,
     },
   });
 
@@ -56,8 +54,13 @@ const FormOne = () => {
     setData({
       limpiarDespuesDeReforma: values.limpiarDespuesDeReforma,
       metrosCuadrados: values.metrosCuadrados,
+      numeroDeDespachosIndividuales: values.numeroDeDespachosIndividuales,
+      sueloDeMoqueta: values.sueloDeMoqueta,
+      limpiezaPeriodicaDeMoqueta: values.limpiezaPeriodicaDeMoqueta,
+      unaVezCada: values.unaVezCada,
     });
-    console.log({data});
+    // console.log({ data });
+    console.log(values);
   }
 
   return (
@@ -87,6 +90,70 @@ const FormOne = () => {
           render={({ field }) => (
             <FormItem>
               <FormLabel>Metros Cuadrados</FormLabel>
+              <FormControl>
+                <Input type="number" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="numeroDeDespachosIndividuales"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>numeroDeDespachosIndividuales</FormLabel>
+              <FormControl>
+                <Input type="number" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="sueloDeMoqueta"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>sueloDeMoqueta</FormLabel>
+              <FormControl>
+                <Switch
+                  className="data-[state=checked]:bg-green-500 data-[state=unchecked]:bg-red-500"
+                  checked={field.value}
+                  onCheckedChange={field.onChange}
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="limpiezaPeriodicaDeMoqueta"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>limpiezaPeriodicaDeMoqueta</FormLabel>
+              <FormControl>
+                <Switch
+                  className="data-[state=checked]:bg-green-500 data-[state=unchecked]:bg-red-500"
+                  checked={field.value}
+                  onCheckedChange={field.onChange}
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="unaVezCada"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>unaVezCada</FormLabel>
               <FormControl>
                 <Input type="number" {...field} />
               </FormControl>
