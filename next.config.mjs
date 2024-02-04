@@ -9,6 +9,10 @@ const nextConfig = {
       },
     ],
   },
+  // reactStrictMode: true,
+  // env: {
+  //   CURRENT_BRANCH: process.env.CURRENT_BRANCH,
+  // }
 };
 
 export default nextConfig;

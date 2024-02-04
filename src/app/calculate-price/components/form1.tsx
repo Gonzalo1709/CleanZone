@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import { Dispatch, SetStateAction } from "react";
+import axios from "axios";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -38,30 +40,40 @@ const formSchema = z.object({
   observaciones: z.string(),
 });
 
-const FormOne = () => {
-  const [data, setData] = useState<dataType>();
+interface FormOneProps {
+  currentForm: string;
+  setCurrentForm: Dispatch<SetStateAction<string>>;
+  data: dataType;
+  setData: Dispatch<SetStateAction<dataType>>;
+}
 
+const FormOne: React.FC<FormOneProps> = ({
+  currentForm,
+  setCurrentForm,
+  data,
+  setData,
+}) => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      limpiarDespuesDeReforma: false,
-      metrosCuadrados: 0,
-      numeroDeDespachosIndividuales: 0,
-      sueloDeMoqueta: false,
-      limpiezaPeriodicaDeMoqueta: false,
-      unaVezCada: 0,
-      totalDePuestosDeTrabajo: 0,
-      totalDeSillas: 0,
-      cocinaUOffice: false,
-      cocinaUOfficeNumber: 0,
-      limpiarVajillas: false,
-      cuartosDeBano: false,
-      cuartosDeBanoNumber: 0,
-      observaciones: "",
+      limpiarDespuesDeReforma: data.limpiarDespuesDeReforma,
+      metrosCuadrados: data.metrosCuadrados,
+      numeroDeDespachosIndividuales: data.numeroDeDespachosIndividuales,
+      sueloDeMoqueta: data.sueloDeMoqueta,
+      limpiezaPeriodicaDeMoqueta: data.limpiezaPeriodicaDeMoqueta,
+      unaVezCada: data.unaVezCada,
+      totalDePuestosDeTrabajo: data.totalDePuestosDeTrabajo,
+      totalDeSillas: data.totalDeSillas,
+      cocinaUOffice: data.cocinaUOffice,
+      cocinaUOfficeNumber: data.cocinaUOfficeNumber,
+      limpiarVajillas: data.limpiarVajillas,
+      cuartosDeBano: data.cuartosDeBano,
+      cuartosDeBanoNumber: data.cuartosDeBanoNumber,
+      observaciones: data.observaciones,
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  async function onSubmit(values: z.infer<typeof formSchema>) {
     setData({
       limpiarDespuesDeReforma: values.limpiarDespuesDeReforma,
       metrosCuadrados: values.metrosCuadrados,
@@ -78,8 +90,35 @@ const FormOne = () => {
       cuartosDeBanoNumber: values.cuartosDeBanoNumber,
       observaciones: values.observaciones,
     });
-    // console.log({ data });
-    console.log(values);
+
+    setCurrentForm("formTwo");
+
+    const body = Object.assign({}, values, { branch: process.env.NEXT_PUBLIC_CURRENT_BRANCH });
+
+    try {
+      const { data, status } = await axios.post(
+        "https://q8y3gkmsnf.execute-api.us-east-1.amazonaws.com/dev/bookings",
+        JSON.stringify(body),
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+        }
+      );
+      console.log(status);
+
+      return data;
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        console.log("error message: ", error.message);
+        return error.message;
+      } else {
+        console.log("unexpected error: ", error);
+        return "An unexpected error occurred";
+      }
+    }
+
   }
 
   return (
