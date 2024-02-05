@@ -21,17 +21,14 @@ export default function HomepageCarousel() {
   const { height, width } = useWindowDimensions();
   const [showArrow, setShowArrow] = useState<boolean>(true);
 
-  
   useEffect(() => {
-
     if (height > 1260) {
       setShowArrow(false);
-      console.log("height is greater than 1260")
-    }
-    else {
+    } else {
       setShowArrow(true);
-      console.log("height is less than 1260")
     }
+
+    console.log(carouselApi);
 
     if (!carouselApi) {
       return;
@@ -40,7 +37,7 @@ export default function HomepageCarousel() {
       carouselApi.scrollNext();
     }, 5000);
     return () => clearInterval(interval);
-  }, []);
+  }, [carouselApi]);
 
   const handleScroll = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     e.preventDefault();
@@ -52,23 +49,22 @@ export default function HomepageCarousel() {
     });
   };
 
-
   return (
     <>
       <Carousel
+        setApi={setCarouselApi}
         opts={{
           align: "center",
           loop: true,
           duration: 30,
         }}
         className="w-full "
-        setApi={setCarouselApi}
       >
         <div className="relative text-center bg-black">
-          <CarouselContent className=" opacity-80 md:h-[90vh] max-h-[900px]">
+          <CarouselContent className=" opacity-80 h-[90vh] max-h-[900px]">
             <CarouselItem>
               <Image
-                src="https://czwebpageresources.s3.amazonaws.com/TestImages/test1.jpeg"
+                src="https://czwebpageresources.s3.amazonaws.com/TestImages/test4.jpg"
                 width={700}
                 height={700}
                 alt="Test Image"
@@ -77,7 +73,7 @@ export default function HomepageCarousel() {
             </CarouselItem>
             <CarouselItem>
               <Image
-                src="https://czwebpageresources.s3.amazonaws.com/TestImages/test2.jpeg"
+                src="https://czwebpageresources.s3.amazonaws.com/TestImages/test5.jpg"
                 width={700}
                 height={700}
                 alt="Test Image"
@@ -86,7 +82,7 @@ export default function HomepageCarousel() {
             </CarouselItem>
             <CarouselItem>
               <Image
-                src="https://czwebpageresources.s3.amazonaws.com/TestImages/test3.jpeg"
+                src="https://czwebpageresources.s3.amazonaws.com/TestImages/test6.jpg"
                 width={500}
                 height={500}
                 alt="Test Image"
@@ -94,13 +90,17 @@ export default function HomepageCarousel() {
               />
             </CarouselItem>
           </CarouselContent>
+          <h1 className="absolute top-[41.5%] left-[0%] right-[0%] mx-auto w-auto md:m-0 md:top-[65%] md:right-[95%] md:left-[5%] text-white text-5xl md:text-8xl font-semibold">CLEANZONE</h1>
+          <h2 className="absolute top-[50%] left-[0%] right-[0%] mx-auto w-[300px] md:m-0 md:top-[77.5%] md:right-[95%] md:left-[5%] text-white text-3xl md:text-4xl font-semibold">Very Cool Slogan</h2>
           <Link
             href="#calculate"
             onClick={handleScroll}
-            className="md:block hidden"
+            className="block"
           >
             <ChevronDown
-              className={`opacity-100 absolute bottom-5 right-[45.5%] animate-bounce bg-white bg-opacity-25 rounded-full ${showArrow ? " visible" : " invisible"}`}
+              className={`opacity-100 absolute bottom-16 md:bottom-5 left-0 right-0 ml-auto mr-auto w-[80px] animate-bounce ${
+                showArrow ? " visible" : " invisible"
+              }`}
               size={80}
               color="#FDFDFD"
             />
