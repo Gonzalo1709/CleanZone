@@ -90,8 +90,8 @@ export default function HomepageCarousel() {
               />
             </CarouselItem>
           </CarouselContent>
-          <h1 className="absolute top-[41.5%] left-[0%] right-[0%] mx-auto w-auto md:m-0 md:top-[65%] md:right-[95%] md:left-[5%] text-white text-5xl md:text-8xl font-semibold">CLEANZONE</h1>
-          <h2 className="absolute top-[50%] left-[0%] right-[0%] mx-auto w-[300px] md:m-0 md:top-[77.5%] md:right-[95%] md:left-[5%] text-white text-3xl md:text-4xl font-semibold">Very Cool Slogan</h2>
+          <p className="md:leading-[3rem] absolute top-[41.5%] left-[0%] right-[0%] mx-auto w-auto md:w-80 md:m-0 md:top-[65%] md:right-[95%] md:left-[5%] text-white text-5xl md:text-8xl font-semibold">CLEANZONE <br className="m-0 p-0"/>
+          <span className="text-3xl md:text-4xl">Very Cool Slogan</span> </p>
           <Link
             href="#calculate"
             onClick={handleScroll}
