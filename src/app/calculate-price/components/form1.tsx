@@ -19,8 +19,10 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Switch } from "@/components/ui/switch";
+import { Checkbox } from "@radix-ui/react-checkbox";
 
 import { dataType } from "@/lib/form-interface";
+import { Textarea } from "@/components/ui/textarea";
 
 const formSchema = z.object({
   limpiarDespuesDeReforma: z.boolean(),
@@ -119,259 +121,289 @@ const FormOne: React.FC<FormOneProps> = ({
     //     return "An unexpected error occurred";
     //   }
     // }
+    
   }
 
+  // const switchStyle = "h-10 w-28";
   const switchStyle =
-    "data-[state=checked]:bg-green-500 data-[state=unchecked]:bg-red-500 h-10 w-28";
+    "data-[state=checked]:bg-green-300 data-[state=unchecked]:bg-red-600 h-10 w-28";
   const inputStyle =
-    "border-2 w-28 h-10 mx-auto text-center text-xl rounded-full [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none";
+    "border-2 w-20 h-9 mx-auto text-center text-xl rounded-full [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none";
 
   return (
-    <div className="border-4 rounded-lg p-4 shadow-xl">
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="">
-          <FormField
-            control={form.control}
-            name="limpiarDespuesDeReforma"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel className="text-lg">
-                  ¿Es necesario limpiar después de la reforma? <br />
-                </FormLabel>
-                <FormControl className="">
-                  <Switch
-                    className={switchStyle}
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(onSubmit)} className="">
+        <FormField
+          control={form.control}
+          name="limpiarDespuesDeReforma"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel className="text-lg">
+                ¿Es necesario limpiar después de la reforma? <br />
+              </FormLabel>
+              <FormControl className="">
+                <label className="relative inline-flex items-center cursor-pointer">
+                  <input
+                    type="checkbox"
+                    className="sr-only peer"
                     checked={field.value}
-                    onCheckedChange={field.onChange}
+                    onChange={field.onChange}
+                    // {...field}
                   />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+                  <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600" />
+                </label>
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
 
-          <FormField
-            control={form.control}
-            name="metrosCuadrados"
-            render={({ field }) => (
-              <FormItem className="">
-                <FormLabel className="text-lg">Metros Cuadrados</FormLabel>
-                <FormControl className="">
-                  <Input className={inputStyle} type="number" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+        <FormField
+          control={form.control}
+          name="metrosCuadrados"
+          render={({ field }) => (
+            <FormItem className="">
+              <FormLabel className="text-lg">Metros Cuadrados</FormLabel>
+              <FormControl className="">
+                <Input className={inputStyle} type="number" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
 
-          <FormField
-            control={form.control}
-            name="numeroDeDespachosIndividuales"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel className="text-lg">
-                  Número de despachos individuales
-                </FormLabel>
-                <FormControl>
-                  <Input type="number" className={inputStyle} {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+        <FormField
+          control={form.control}
+          name="numeroDeDespachosIndividuales"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel className="text-lg">
+                Número de despachos individuales
+              </FormLabel>
+              <FormControl>
+                <Input type="number" className={inputStyle} {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
 
-          <FormField
-            control={form.control}
-            name="sueloDeMoqueta"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel className="text-lg">
-                  ¿El suelo es de moqueta? <br />
-                </FormLabel>
-                <FormControl>
-                  <Switch
-                    className={switchStyle}
+        <FormField
+          control={form.control}
+          name="sueloDeMoqueta"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel className="text-lg">
+                ¿El suelo es de moqueta? <br />
+              </FormLabel>
+              <FormControl>
+                <label className="relative inline-flex items-center cursor-pointer">
+                  <input
+                    type="checkbox"
+                    className="sr-only peer"
                     checked={field.value}
-                    onCheckedChange={field.onChange}
+                    onChange={field.onChange}
+                    // {...field}
                   />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+                  <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600" />
+                </label>
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
 
-          <FormField
-            control={form.control}
-            name="limpiezaPeriodicaDeMoqueta"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel className="text-lg">
-                  Limpieza periódica de moqueta: <br />
-                </FormLabel>
-                <FormControl>
-                  <Switch
-                    className={switchStyle}
+        <FormField
+          control={form.control}
+          name="limpiezaPeriodicaDeMoqueta"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel className="text-lg">
+                Limpieza periódica de moqueta: <br />
+              </FormLabel>
+              <FormControl>
+                <label className="relative inline-flex items-center cursor-pointer">
+                  <input
+                    type="checkbox"
+                    className="sr-only peer"
                     checked={field.value}
-                    onCheckedChange={field.onChange}
+                    onChange={field.onChange}
+                    // {...field}
                   />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+                  <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600" />
+                </label>
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
 
-          <FormField
-            control={form.control}
-            name="unaVezCada"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel className="text-lg">Una vez cada</FormLabel>
-                <FormControl>
-                  <Input type="number" className={inputStyle} {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+        <FormField
+          control={form.control}
+          name="unaVezCada"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel className="text-lg">Una vez cada</FormLabel>
+              <FormControl>
+                <Input type="number" className={inputStyle} {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
 
-          <FormField
-            control={form.control}
-            name="totalDePuestosDeTrabajo"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel className="text-lg">
-                  Número total de puestos de trabajo
-                </FormLabel>
-                <FormControl>
-                  <Input type="number" className={inputStyle} {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+        <FormField
+          control={form.control}
+          name="totalDePuestosDeTrabajo"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel className="text-lg">
+                Número total de puestos de trabajo
+              </FormLabel>
+              <FormControl>
+                <Input type="number" className={inputStyle} {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
 
-          <FormField
-            control={form.control}
-            name="totalDeSillas"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel className="text-lg">
-                  Número total de sillas
-                </FormLabel>
-                <FormControl>
-                  <Input type="number" className={inputStyle} {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+        <FormField
+          control={form.control}
+          name="totalDeSillas"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel className="text-lg">Número total de sillas</FormLabel>
+              <FormControl>
+                <Input type="number" className={inputStyle} {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
 
-          <FormField
-            control={form.control}
-            name="cocinaUOffice"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel className="text-lg">
-                  ¿Tiene cocina u office? <br />
-                </FormLabel>
-                <FormControl>
-                  <Switch
-                    className={switchStyle}
+        <FormField
+          control={form.control}
+          name="cocinaUOffice"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel className="text-lg">
+                ¿Tiene cocina u office? <br />
+              </FormLabel>
+              <FormControl>
+                <label className="relative inline-flex items-center cursor-pointer">
+                  <input
+                    type="checkbox"
+                    className="sr-only peer"
                     checked={field.value}
-                    onCheckedChange={field.onChange}
+                    onChange={field.onChange}
+                    // {...field}
                   />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+                  <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600" />
+                </label>
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
 
-          <FormField
-            control={form.control}
-            name="cocinaUOfficeNumber"
-            render={({ field }) => (
-              <FormItem>
-                {/* <FormLabel>cocinaUOfficeNumber</FormLabel> */}
-                <FormControl>
-                  <Input type="number" className={inputStyle} {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+        <FormField
+          control={form.control}
+          name="cocinaUOfficeNumber"
+          render={({ field }) => (
+            <FormItem>
+              {/* <FormLabel>cocinaUOfficeNumber</FormLabel> */}
+              <FormControl>
+                <Input type="number" className={inputStyle} {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
 
-          <FormField
-            control={form.control}
-            name="limpiarVajillas"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel className="text-lg">
-                  ¿Es necesario limpiar vajillas? <br />
-                </FormLabel>
-                <FormControl>
-                  <Switch
-                    className={switchStyle}
+        <FormField
+          control={form.control}
+          name="limpiarVajillas"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel className="text-lg">
+                ¿Es necesario limpiar vajillas? <br />
+              </FormLabel>
+              <FormControl>
+                <label className="relative inline-flex items-center cursor-pointer">
+                  <input
+                    type="checkbox"
+                    className="sr-only peer"
                     checked={field.value}
-                    onCheckedChange={field.onChange}
+                    onChange={field.onChange}
+                    // {...field}
                   />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+                  <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600" />
+                </label>
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
 
-          <FormField
-            control={form.control}
-            name="cuartosDeBano"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel className="text-lg">
-                  ¿Tiene cuartos de baño? <br />
-                </FormLabel>
-                <FormControl>
-                  <Switch
-                    className={switchStyle}
+        <FormField
+          control={form.control}
+          name="cuartosDeBano"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel className="text-lg">
+                ¿Tiene cuartos de baño? <br />
+              </FormLabel>
+              <FormControl>
+                <label className="relative inline-flex items-center cursor-pointer">
+                  <input
+                    type="checkbox"
+                    className="sr-only peer"
                     checked={field.value}
-                    onCheckedChange={field.onChange}
+                    onChange={field.onChange}
+                    // {...field}
                   />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+                  <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600" />
+                </label>
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
 
-          <FormField
-            control={form.control}
-            name="cuartosDeBanoNumber"
-            render={({ field }) => (
-              <FormItem>
-                {/* <FormLabel>cuartosDeBanoNumber</FormLabel> */}
-                <FormControl>
-                  <Input type="number" className={inputStyle} {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+        <FormField
+          control={form.control}
+          name="cuartosDeBanoNumber"
+          render={({ field }) => (
+            <FormItem>
+              {/* <FormLabel>cuartosDeBanoNumber</FormLabel> */}
+              <FormControl>
+                <Input type="number" className={inputStyle} {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
 
-          <FormField
-            control={form.control}
-            name="observaciones"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel className="text-lg">Observaciones</FormLabel>
-                <FormControl>
-                  <Input {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+        <FormField
+          control={form.control}
+          name="observaciones"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel className="text-lg">Observaciones</FormLabel>
+              <FormControl>
+                <Textarea
+                  {...field}
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
 
-          <Button type="submit">Next Step</Button>
-        </form>
-      </Form>
-    </div>
+        <Button type="submit">Next Step</Button>
+      </form>
+    </Form>
   );
 };
 

@@ -15,9 +15,8 @@ const FormTwo: React.FC<FormTwoProps> = ({
   data,
   setData,
 }) => {
-
   function showData() {
-    console.log({data})
+    console.log({ data });
   }
 
   function goBack() {
@@ -26,10 +25,10 @@ const FormTwo: React.FC<FormTwoProps> = ({
 
   return (
     <div>
-      Form Two
-      <p>cas</p>
+      <p>Form Two</p>
       <button onClick={showData}>conole data</button>
-      <button onClick={goBack}>go back</button>
+      <br />
+      <button onClick={goBack}>go back <br /></button>
     </div>
   );
 };

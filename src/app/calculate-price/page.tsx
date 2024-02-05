@@ -25,32 +25,49 @@ const CalculatePricePage = () => {
   });
 
   return (
-    <div className="text-center my-10">
-      <div>TEST</div>
+    <div className="text-center my-10  ml-auto mr-auto p-5">
+      <div className="flex justify-center space-x-14">
+        <div className={currentForm === "formOne" ? 'text-[#2563eb]' : ""}>
+          <h1 className="text-xl font-semibold">PASO 1</h1>
+          <p className="text-lg font-semibold">Inmueble</p>
+        </div>
+        <div className={currentForm === "formTwo" ? 'text-[#2563eb]' : ""}>
+          <h1 className="text-xl font-semibold">PASO 2</h1>
+          <p className="text-lg font-semibold">Servicio</p>
+        </div>
+        <div className={currentForm === "formThree" ? 'text-[#2563eb]' : ""}>
+          <h1 className="text-xl font-semibold">PASO 3</h1>
+          <p className="text-lg font-semibold">Cliente</p>
+        </div>
+      </div>
 
-      <div>
+      <div className="my-5">
         {currentForm === "formOne" ? (
-          <h1 className="text-2xl font-semibold mb-5">PASO 1 Información del Inmueble</h1>
+          <h1 className="text-2xl font-semibold">
+            PASO 1 Información del Inmueble
+          </h1>
         ) : null}
       </div>
 
       <div className="flex justify-center">
-        {currentForm === "formOne" ? (
-          <FormOne
-            currentForm={currentForm}
-            setCurrentForm={setCurrentForm}
-            data={data}
-            setData={setData}
-          />
-        ) : null}
-        {currentForm === "formTwo" ? (
-          <FormTwo
-            currentForm={currentForm}
-            setCurrentForm={setCurrentForm}
-            data={data}
-            setData={setData}
-          />
-        ) : null}
+        <div className="border-4 rounded-lg p-4 shadow-xl bg-slate-100">
+          {currentForm === "formOne" ? (
+            <FormOne
+              currentForm={currentForm}
+              setCurrentForm={setCurrentForm}
+              data={data}
+              setData={setData}
+            />
+          ) : null}
+          {currentForm === "formTwo" ? (
+            <FormTwo
+              currentForm={currentForm}
+              setCurrentForm={setCurrentForm}
+              data={data}
+              setData={setData}
+            />
+          ) : null}
+        </div>
       </div>
     </div>
   );
