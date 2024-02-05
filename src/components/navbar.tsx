@@ -38,13 +38,13 @@ const Navbar = () => {
         </div>
 
         {/* navbar for mobile */}
-        <div className="ml-auto space-x-4 md:hidden text-lg py-5">
+        <div className="ml-auto mr-3 space-x-4 md:hidden text-lg py-5">
           <button type="button" onClick={handleClick} className="mt-2">
             {isOpen ? <X size={30} /> : <Menu size={30} />}
           </button>
 
           {isOpen ? (
-            <div className="md:hidden text-black mt-5 absolute right-0 rounded-sm z-10">
+            <div className="md:hidden mt-0 absolute right-0 rounded-sm z-10 bg-[#2D9BF0] text-white">
               <div className="ox-2 pt-2 pb-3 space-y-1 sm:px-3">
                 {links.map((link) => (
                   <Link
