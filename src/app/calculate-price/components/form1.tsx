@@ -98,30 +98,31 @@ const FormOne: React.FC<FormOneProps> = ({
       branch: process.env.NEXT_PUBLIC_CURRENT_BRANCH,
     });
     console.log(body);
-    // try {
-    //   const { data, status } = await axios.post(
-    //     "https://q8y3gkmsnf.execute-api.us-east-1.amazonaws.com/dev/bookings",
-    //     JSON.stringify(body),
-    //     {
-    //       headers: {
-    //         "Content-Type": "application/json",
-    //         Accept: "application/json",
-    //       },
-    //     }
-    //   );
-    //   console.log(status);
-
-    //   return data;
-    // } catch (error) {
-    //   if (axios.isAxiosError(error)) {
-    //     console.log("error message: ", error.message);
-    //     return error.message;
-    //   } else {
-    //     console.log("unexpected error: ", error);
-    //     return "An unexpected error occurred";
-    //   }
-    // }
     
+    try {
+      const { data, status } = await axios.post(
+        "https://q8y3gkmsnf.execute-api.us-east-1.amazonaws.com/dev/bookings",
+        JSON.stringify(body),
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+        }
+      );
+      console.log(status);
+
+      return data;
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        console.log("error message: ", error.message);
+        return error.message;
+      } else {
+        console.log("unexpected error: ", error);
+        return "An unexpected error occurred";
+      }
+    }
+
   }
 
   // const switchStyle = "h-10 w-28";
