@@ -12,7 +12,7 @@ const TraitsCard: React.FC<TraitsProps> = ({icon, h1, text}) => {
     <div className="flex justify-center mb-4">
       {icon} 
     </div>
-    <h1 className="text-2xl font-bold mb-4 text-[#cf2680]">{h1}</h1>
+    <h1 className="text-2xl font-bold mb-4 text-[#383388]">{h1}</h1>
     <p>{text}</p>
   </div>
   )

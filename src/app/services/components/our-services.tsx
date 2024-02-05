@@ -5,7 +5,7 @@ const OurServices = () => {
   return (
     <div className="my-20 mx-10 lg:mx-14 flex-row lg:flex ">
       <div className="mb-20 lg:mb-0 lg:w-[70%] lg:mr-7">
-        <h1 className="text-4xl font-semibold text-[#cf2680] mb-6">
+        <h1 className="text-4xl font-semibold text-[#383388] mb-6">
           Our Services
         </h1>
         <p className="text-2xl">
