@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -19,7 +19,6 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Switch } from "@/components/ui/switch";
-import { Checkbox } from "@/components/ui/checkbox";
 
 import { dataType } from "@/lib/form-interface";
 
@@ -93,260 +92,286 @@ const FormOne: React.FC<FormOneProps> = ({
 
     setCurrentForm("formTwo");
 
-    const body = Object.assign({}, values, { branch: process.env.NEXT_PUBLIC_CURRENT_BRANCH });
+    const body = Object.assign({}, values, {
+      branch: process.env.NEXT_PUBLIC_CURRENT_BRANCH,
+    });
+    console.log(body);
+    // try {
+    //   const { data, status } = await axios.post(
+    //     "https://q8y3gkmsnf.execute-api.us-east-1.amazonaws.com/dev/bookings",
+    //     JSON.stringify(body),
+    //     {
+    //       headers: {
+    //         "Content-Type": "application/json",
+    //         Accept: "application/json",
+    //       },
+    //     }
+    //   );
+    //   console.log(status);
 
-    try {
-      const { data, status } = await axios.post(
-        "https://q8y3gkmsnf.execute-api.us-east-1.amazonaws.com/dev/bookings",
-        JSON.stringify(body),
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-          },
-        }
-      );
-      console.log(status);
-
-      return data;
-    } catch (error) {
-      if (axios.isAxiosError(error)) {
-        console.log("error message: ", error.message);
-        return error.message;
-      } else {
-        console.log("unexpected error: ", error);
-        return "An unexpected error occurred";
-      }
-    }
-
+    //   return data;
+    // } catch (error) {
+    //   if (axios.isAxiosError(error)) {
+    //     console.log("error message: ", error.message);
+    //     return error.message;
+    //   } else {
+    //     console.log("unexpected error: ", error);
+    //     return "An unexpected error occurred";
+    //   }
+    // }
   }
 
+  const switchStyle =
+    "data-[state=checked]:bg-green-500 data-[state=unchecked]:bg-red-500 h-10 w-28";
+  const inputStyle =
+    "border-2 w-28 h-10 mx-auto text-center text-xl rounded-full [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none";
+
   return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)}>
-        <FormField
-          control={form.control}
-          name="limpiarDespuesDeReforma"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Limpiar despues de reforma</FormLabel>
-              <FormControl>
-                <Switch
-                  className="data-[state=checked]:bg-green-500 data-[state=unchecked]:bg-red-500"
-                  checked={field.value}
-                  onCheckedChange={field.onChange}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+    <div className="border-4 rounded-lg p-4 shadow-xl">
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="">
+          <FormField
+            control={form.control}
+            name="limpiarDespuesDeReforma"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="text-lg">
+                  ¿Es necesario limpiar después de la reforma? <br />
+                </FormLabel>
+                <FormControl className="">
+                  <Switch
+                    className={switchStyle}
+                    checked={field.value}
+                    onCheckedChange={field.onChange}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
-        <FormField
-          control={form.control}
-          name="metrosCuadrados"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Metros Cuadrados</FormLabel>
-              <FormControl>
-                <Input type="number" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+          <FormField
+            control={form.control}
+            name="metrosCuadrados"
+            render={({ field }) => (
+              <FormItem className="">
+                <FormLabel className="text-lg">Metros Cuadrados</FormLabel>
+                <FormControl className="">
+                  <Input className={inputStyle} type="number" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
-        <FormField
-          control={form.control}
-          name="numeroDeDespachosIndividuales"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>numeroDeDespachosIndividuales</FormLabel>
-              <FormControl>
-                <Input type="number" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+          <FormField
+            control={form.control}
+            name="numeroDeDespachosIndividuales"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="text-lg">
+                  Número de despachos individuales
+                </FormLabel>
+                <FormControl>
+                  <Input type="number" className={inputStyle} {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
-        <FormField
-          control={form.control}
-          name="sueloDeMoqueta"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>sueloDeMoqueta</FormLabel>
-              <FormControl>
-                <Switch
-                  className="data-[state=checked]:bg-green-500 data-[state=unchecked]:bg-red-500"
-                  checked={field.value}
-                  onCheckedChange={field.onChange}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+          <FormField
+            control={form.control}
+            name="sueloDeMoqueta"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="text-lg">
+                  ¿El suelo es de moqueta? <br />
+                </FormLabel>
+                <FormControl>
+                  <Switch
+                    className={switchStyle}
+                    checked={field.value}
+                    onCheckedChange={field.onChange}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
-        <FormField
-          control={form.control}
-          name="limpiezaPeriodicaDeMoqueta"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>limpiezaPeriodicaDeMoqueta</FormLabel>
-              <FormControl>
-                <Switch
-                  className="data-[state=checked]:bg-green-500 data-[state=unchecked]:bg-red-500"
-                  checked={field.value}
-                  onCheckedChange={field.onChange}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+          <FormField
+            control={form.control}
+            name="limpiezaPeriodicaDeMoqueta"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="text-lg">
+                  Limpieza periódica de moqueta: <br />
+                </FormLabel>
+                <FormControl>
+                  <Switch
+                    className={switchStyle}
+                    checked={field.value}
+                    onCheckedChange={field.onChange}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
-        <FormField
-          control={form.control}
-          name="unaVezCada"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>unaVezCada</FormLabel>
-              <FormControl>
-                <Input type="number" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+          <FormField
+            control={form.control}
+            name="unaVezCada"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="text-lg">Una vez cada</FormLabel>
+                <FormControl>
+                  <Input type="number" className={inputStyle} {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
-        <FormField
-          control={form.control}
-          name="totalDePuestosDeTrabajo"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>totalDePuestosDeTrabajo</FormLabel>
-              <FormControl>
-                <Input type="number" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+          <FormField
+            control={form.control}
+            name="totalDePuestosDeTrabajo"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="text-lg">
+                  Número total de puestos de trabajo
+                </FormLabel>
+                <FormControl>
+                  <Input type="number" className={inputStyle} {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
-        <FormField
-          control={form.control}
-          name="totalDeSillas"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>totalDeSillas</FormLabel>
-              <FormControl>
-                <Input type="number" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+          <FormField
+            control={form.control}
+            name="totalDeSillas"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="text-lg">
+                  Número total de sillas
+                </FormLabel>
+                <FormControl>
+                  <Input type="number" className={inputStyle} {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
-        <FormField
-          control={form.control}
-          name="cocinaUOffice"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>cocinaUOffice</FormLabel>
-              <FormControl>
-                <Switch
-                  className="data-[state=checked]:bg-green-500 data-[state=unchecked]:bg-red-500"
-                  checked={field.value}
-                  onCheckedChange={field.onChange}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+          <FormField
+            control={form.control}
+            name="cocinaUOffice"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="text-lg">
+                  ¿Tiene cocina u office? <br />
+                </FormLabel>
+                <FormControl>
+                  <Switch
+                    className={switchStyle}
+                    checked={field.value}
+                    onCheckedChange={field.onChange}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
-        <FormField
-          control={form.control}
-          name="cocinaUOfficeNumber"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>cocinaUOfficeNumber</FormLabel>
-              <FormControl>
-                <Input type="number" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+          <FormField
+            control={form.control}
+            name="cocinaUOfficeNumber"
+            render={({ field }) => (
+              <FormItem>
+                {/* <FormLabel>cocinaUOfficeNumber</FormLabel> */}
+                <FormControl>
+                  <Input type="number" className={inputStyle} {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
-        <FormField
-          control={form.control}
-          name="limpiarVajillas"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>limpiarVajillas</FormLabel>
-              <FormControl>
-                <Switch
-                  className="data-[state=checked]:bg-green-500 data-[state=unchecked]:bg-red-500"
-                  checked={field.value}
-                  onCheckedChange={field.onChange}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+          <FormField
+            control={form.control}
+            name="limpiarVajillas"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="text-lg">
+                  ¿Es necesario limpiar vajillas? <br />
+                </FormLabel>
+                <FormControl>
+                  <Switch
+                    className={switchStyle}
+                    checked={field.value}
+                    onCheckedChange={field.onChange}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
-        <FormField
-          control={form.control}
-          name="cuartosDeBano"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>cuartosDeBano</FormLabel>
-              <FormControl>
-                <Switch
-                  className="data-[state=checked]:bg-green-500 data-[state=unchecked]:bg-red-500"
-                  checked={field.value}
-                  onCheckedChange={field.onChange}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+          <FormField
+            control={form.control}
+            name="cuartosDeBano"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="text-lg">
+                  ¿Tiene cuartos de baño? <br />
+                </FormLabel>
+                <FormControl>
+                  <Switch
+                    className={switchStyle}
+                    checked={field.value}
+                    onCheckedChange={field.onChange}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
-        <FormField
-          control={form.control}
-          name="cuartosDeBanoNumber"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>cuartosDeBanoNumber</FormLabel>
-              <FormControl>
-                <Input type="number" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+          <FormField
+            control={form.control}
+            name="cuartosDeBanoNumber"
+            render={({ field }) => (
+              <FormItem>
+                {/* <FormLabel>cuartosDeBanoNumber</FormLabel> */}
+                <FormControl>
+                  <Input type="number" className={inputStyle} {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
-        <FormField
-          control={form.control}
-          name="observaciones"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>observaciones</FormLabel>
-              <FormControl>
-                <Input {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+          <FormField
+            control={form.control}
+            name="observaciones"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="text-lg">Observaciones</FormLabel>
+                <FormControl>
+                  <Input {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
-        <Button type="submit">Next Step</Button>
-      </form>
-    </Form>
+          <Button type="submit">Next Step</Button>
+        </form>
+      </Form>
+    </div>
   );
 };
 

@@ -25,23 +25,33 @@ const CalculatePricePage = () => {
   });
 
   return (
-    <div>
-      {currentForm === "formOne" ? (
-        <FormOne
-          currentForm={currentForm}
-          setCurrentForm={setCurrentForm}
-          data={data}
-          setData={setData}
-        />
-      ) : null}
-      {currentForm === "formTwo" ? (
-        <FormTwo
-          currentForm={currentForm}
-          setCurrentForm={setCurrentForm}
-          data={data}
-          setData={setData}
-        />
-      ) : null}
+    <div className="text-center my-10">
+      <div>TEST</div>
+
+      <div>
+        {currentForm === "formOne" ? (
+          <h1 className="text-2xl font-semibold mb-5">PASO 1 Información del Inmueble</h1>
+        ) : null}
+      </div>
+
+      <div className="flex justify-center">
+        {currentForm === "formOne" ? (
+          <FormOne
+            currentForm={currentForm}
+            setCurrentForm={setCurrentForm}
+            data={data}
+            setData={setData}
+          />
+        ) : null}
+        {currentForm === "formTwo" ? (
+          <FormTwo
+            currentForm={currentForm}
+            setCurrentForm={setCurrentForm}
+            data={data}
+            setData={setData}
+          />
+        ) : null}
+      </div>
     </div>
   );
 };
