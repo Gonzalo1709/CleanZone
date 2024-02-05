@@ -18,7 +18,7 @@ const Navbar = () => {
       <div className="md:py-5 md:px-3 flex items-center bg-[#2D9BF0] text-white h-[10vh] max-h-[100px]">
         <div className="">
           <Link href="/">
-            <h1 className="font-bold text-3xl hover:bg-gray-900 px-3 py-1 rounded-md">
+            <h1 className="font-bold text-3xl hover:bg-[#383388] px-3 py-1 rounded-md">
               CLEANZONE
             </h1>
           </Link>
@@ -30,7 +30,7 @@ const Navbar = () => {
             <Link
               key={link.title}
               href={"/" + link.href}
-              className="block px-3 py-2 rounded-md hover:bg-[#CF2680] text-lg"
+              className="block px-3 py-2 rounded-md hover:bg-[#383388] text-lg"
             >
               {link.title}
             </Link>
@@ -50,7 +50,7 @@ const Navbar = () => {
                   <Link
                     key={link.title}
                     href={"/" + link.href}
-                    className="block px-3 py-2 rounded-md hover:bg-[#CF2680] text-lg"
+                    className="block px-3 py-2 rounded-md hover:bg-[#383388] text-lg"
                   >
                     {link.title}
                   </Link>
