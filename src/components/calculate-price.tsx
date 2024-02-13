@@ -18,12 +18,12 @@ function CalculatePrice() {
       <div className="p-10 pt-0 text-center lg:pt-10 lg:justify-center">
         <div className="pb-3">
           <Link href="/services">
-            <Button variant="outline" className="bg-[#383388] text-white">VIEW OUR SERVICES</Button>
+            <Button variant="outline" className="bg-[#0B132A] text-white">VIEW OUR SERVICES</Button>
           </Link>
         </div>
         <div>
           <Link href="/calculate-price">
-            <Button variant="outline" className="bg-[#383388] text-white">CALCULATE YOUR PRICE</Button>
+            <Button variant="outline" className="bg-[#0B132A] text-white">CALCULATE YOUR PRICE</Button>
           </Link>
         </div>
       </div>

@@ -13,5 +13,9 @@ export interface dataType {
     cuartosDeBano: boolean;
     cuartosDeBanoNumber: number;
     observaciones: string;
+    // second form:
+    limpiezaPasilloEntrada: Array<string>;
+    moqueta: Array<string>;
+    fregadoDeSuelosConFregona: Array<string>;
   }
   

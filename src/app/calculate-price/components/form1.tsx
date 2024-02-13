@@ -5,7 +5,6 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Dispatch, SetStateAction } from "react";
-import axios from "axios";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -20,9 +19,9 @@ import {
 import { Input } from "@/components/ui/input";
 import { Switch } from "@/components/ui/switch";
 import { Checkbox } from "@radix-ui/react-checkbox";
+import { Textarea } from "@/components/ui/textarea";
 
 import { dataType } from "@/lib/form-interface";
-import { Textarea } from "@/components/ui/textarea";
 
 const formSchema = z.object({
   limpiarDespuesDeReforma: z.boolean(),
@@ -90,6 +89,10 @@ const FormOne: React.FC<FormOneProps> = ({
       cuartosDeBano: values.cuartosDeBano,
       cuartosDeBanoNumber: values.cuartosDeBanoNumber,
       observaciones: values.observaciones,
+      // Second Form: 
+      limpiezaPasilloEntrada: data.limpiezaPasilloEntrada,
+      moqueta: data.moqueta,
+      fregadoDeSuelosConFregona: data.fregadoDeSuelosConFregona,
     });
 
     setCurrentForm("formTwo");
@@ -97,31 +100,30 @@ const FormOne: React.FC<FormOneProps> = ({
     const body = Object.assign({}, values, {
       branch: process.env.NEXT_PUBLIC_CURRENT_BRANCH,
     });
-    console.log(body);
+    // console.log(body);
     
-    try {
-      const { data, status } = await axios.post(
-        "https://q8y3gkmsnf.execute-api.us-east-1.amazonaws.com/dev/bookings",
-        JSON.stringify(body),
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-          },
-        }
-      );
-      console.log(status);
-
-      return data;
-    } catch (error) {
-      if (axios.isAxiosError(error)) {
-        console.log("error message: ", error.message);
-        return error.message;
-      } else {
-        console.log("unexpected error: ", error);
-        return "An unexpected error occurred";
-      }
-    }
+    // try {
+    //   const { data, status } = await axios.post(
+    //     "https://q8y3gkmsnf.execute-api.us-east-1.amazonaws.com/dev/bookings",
+    //     JSON.stringify(body),
+    //     {
+    //       headers: {
+    //         "Content-Type": "application/json",
+    //         Accept: "application/json",
+    //       },
+    //     }
+    //   );
+    //   console.log(status);
+    //   return data;
+    // } catch (error) {
+    //   if (axios.isAxiosError(error)) {
+    //     console.log("error message: ", error.message);
+    //     return error.message;
+    //   } else {
+    //     console.log("unexpected error: ", error);
+    //     return "An unexpected error occurred";
+    //   }
+    // }
 
   }
 
@@ -133,7 +135,7 @@ const FormOne: React.FC<FormOneProps> = ({
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="">
+      <form onSubmit={form.handleSubmit(onSubmit)}>
         <FormField
           control={form.control}
           name="limpiarDespuesDeReforma"

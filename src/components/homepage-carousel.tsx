@@ -90,7 +90,7 @@ export default function HomepageCarousel() {
               />
             </CarouselItem>
           </CarouselContent>
-          <p className="md:leading-[3rem] absolute top-[41.5%] left-[0%] right-[0%] mx-auto w-auto md:w-80 md:m-0 md:top-[65%] md:right-[95%] md:left-[5%] text-white text-5xl md:text-8xl font-semibold">
+          <p className="md:leading-[3rem] absolute top-[41.5%] left-[0%] right-[0%] mx-auto w-auto md:w-80 md:m-0 md:top-[65%] md:right-[95%] md:left-[5%] text-[#8CF7FF] text-5xl md:text-8xl font-semibold">
             CLEANZONE <br className="m-0 p-0" />
             <span className="text-3xl md:text-4xl">Very Cool Slogan</span>{" "}
           </p>

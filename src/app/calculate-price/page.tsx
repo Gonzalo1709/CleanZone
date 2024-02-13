@@ -22,6 +22,10 @@ const CalculatePricePage = () => {
     cuartosDeBano: false,
     cuartosDeBanoNumber: 0,
     observaciones: "",
+    // Second Form:
+    limpiezaPasilloEntrada: [],
+    moqueta: [],
+    fregadoDeSuelosConFregona: [],
   });
 
   return (
