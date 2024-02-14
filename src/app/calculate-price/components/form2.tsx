@@ -1,7 +1,6 @@
 import { dataType } from "@/lib/form-interface";
 import React from "react";
 import { Dispatch, SetStateAction } from "react";
-import axios from "axios";
 
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -165,43 +164,16 @@ const FormTwo: React.FC<FormTwoProps> = ({
       aspiradoraSinMoqueta: values.aspiradoraSinMoqueta,
       limpiezaDeDespachos: values.limpiezaDeDespachos,
       limpiezaDeMesasZonasDiafanas: values.limpiezaDeMesasZonasDiafanas,
+      // Third Form:
+      nombreEmpresa: data.nombreEmpresa,
+      direccion: data.direccion,
+      codigoPostal: data.codigoPostal,
+      personaContacto: data.personaContacto,
+      telefonoContacto: data.telefonoContacto,
+      email: data.email,
     });
 
-    // attach branch to object
-    const body = Object.assign({}, data, {
-      branch: process.env.NEXT_PUBLIC_CURRENT_BRANCH,
-    });
-
-    // add new values to data state
-    body["diasDeLaSemana"] = parseInt(values.diasDeLaSemana);
-    (body["diasEnFinDeSemana"] = values.diasEnFinDeSemana),
-      (body["limpiezaPasilloEntrada"] = values.limpiezaPasilloEntrada);
-    body["moqueta"] = values.moqueta;
-    body["fregadoDeSuelosConFregona"] = values.fregadoDeSuelosConFregona;
-    console.log(body);
-
-    // try {
-    //   const { data, status } = await axios.post(
-    //     "https://q8y3gkmsnf.execute-api.us-east-1.amazonaws.com/dev/bookings",
-    //     JSON.stringify(body),
-    //     {
-    //       headers: {
-    //         "Content-Type": "application/json",
-    //         Accept: "application/json",
-    //       },
-    //     }
-    //   );
-    //   console.log(status);
-    //   return data;
-    // } catch (error) {
-    //   if (axios.isAxiosError(error)) {
-    //     console.log("error message: ", error.message);
-    //     return error.message;
-    //   } else {
-    //     console.log("unexpected error: ", error);
-    //     return "An unexpected error occurred";
-    //   }
-    // }
+    setCurrentForm("formThree");
   }
 
   return (
@@ -361,7 +333,7 @@ const FormTwo: React.FC<FormTwoProps> = ({
             />
           ))}
 
-          <Button type="submit">Submit</Button>
+          <Button type="submit">Next Step</Button>
 
           {/* Second submit button that saves the data to the state */}
           <Button type="button" onClick={form.handleSubmit(goBack)}>

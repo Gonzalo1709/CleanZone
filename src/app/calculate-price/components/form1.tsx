@@ -98,41 +98,18 @@ const FormOne: React.FC<FormOneProps> = ({
       aspiradoraSinMoqueta: data.aspiradoraSinMoqueta,
       limpiezaDeDespachos: data.limpiezaDeDespachos,
       limpiezaDeMesasZonasDiafanas: data.limpiezaDeMesasZonasDiafanas,
+      // Third Form:
+      nombreEmpresa: data.nombreEmpresa,
+      direccion: data.direccion,
+      codigoPostal: data.codigoPostal,
+      personaContacto: data.personaContacto,
+      telefonoContacto: data.telefonoContacto,
+      email: data.email,
     });
 
     setCurrentForm("formTwo");
-
-    const body = Object.assign({}, values, {
-      branch: process.env.NEXT_PUBLIC_CURRENT_BRANCH,
-    });
-    // console.log(body);
-    
-    // try {
-    //   const { data, status } = await axios.post(
-    //     "https://q8y3gkmsnf.execute-api.us-east-1.amazonaws.com/dev/bookings",
-    //     JSON.stringify(body),
-    //     {
-    //       headers: {
-    //         "Content-Type": "application/json",
-    //         Accept: "application/json",
-    //       },
-    //     }
-    //   );
-    //   console.log(status);
-    //   return data;
-    // } catch (error) {
-    //   if (axios.isAxiosError(error)) {
-    //     console.log("error message: ", error.message);
-    //     return error.message;
-    //   } else {
-    //     console.log("unexpected error: ", error);
-    //     return "An unexpected error occurred";
-    //   }
-    // }
-
   }
 
-  // const switchStyle = "h-10 w-28";
   const switchStyle =
     "data-[state=checked]:bg-green-300 data-[state=unchecked]:bg-red-600 h-10 w-28";
   const inputStyle =
@@ -320,7 +297,6 @@ const FormOne: React.FC<FormOneProps> = ({
           name="cocinaUOfficeNumber"
           render={({ field }) => (
             <FormItem>
-              {/* <FormLabel>cocinaUOfficeNumber</FormLabel> */}
               <FormControl>
                 <Input type="number" className={inputStyle} {...field} />
               </FormControl>
@@ -384,7 +360,6 @@ const FormOne: React.FC<FormOneProps> = ({
           name="cuartosDeBanoNumber"
           render={({ field }) => (
             <FormItem>
-              {/* <FormLabel>cuartosDeBanoNumber</FormLabel> */}
               <FormControl>
                 <Input type="number" className={inputStyle} {...field} />
               </FormControl>

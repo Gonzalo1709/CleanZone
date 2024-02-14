@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import FormOne from "./components/form1";
 import { dataType } from "@/lib/form-interface";
 import FormTwo from "./components/form2";
+import FormThree from "./components/form3";
 
 const CalculatePricePage = () => {
   const [currentForm, setCurrentForm] = useState("formOne");
@@ -31,6 +32,13 @@ const CalculatePricePage = () => {
     aspiradoraSinMoqueta: [],
     limpiezaDeDespachos: [],
     limpiezaDeMesasZonasDiafanas: [],
+    // Third Form:
+    nombreEmpresa: "",
+    direccion: "",
+    codigoPostal: 0,
+    personaContacto: "",
+    telefonoContacto: 0,
+    email: "",
   });
 
   return (
@@ -61,6 +69,11 @@ const CalculatePricePage = () => {
             PASO 2 Frecuencia del Servicio
           </h1>
         ) : null}
+        {currentForm === "formThree" ? (
+          <h1 className="text-2xl font-semibold">
+            PASO 3 Información del Cliente
+          </h1>
+        ) : null}
       </div>
 
       <div className="flex justify-center">
@@ -75,6 +88,14 @@ const CalculatePricePage = () => {
           ) : null}
           {currentForm === "formTwo" ? (
             <FormTwo
+              currentForm={currentForm}
+              setCurrentForm={setCurrentForm}
+              data={data}
+              setData={setData}
+            />
+          ) : null}
+          {currentForm === "formThree" ? (
+            <FormThree
               currentForm={currentForm}
               setCurrentForm={setCurrentForm}
               data={data}
