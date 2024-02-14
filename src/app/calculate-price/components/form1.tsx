@@ -90,9 +90,14 @@ const FormOne: React.FC<FormOneProps> = ({
       cuartosDeBanoNumber: values.cuartosDeBanoNumber,
       observaciones: values.observaciones,
       // Second Form: 
+      diasDeLaSemana: data.diasDeLaSemana,
+      diasEnFinDeSemana: data.diasEnFinDeSemana,
       limpiezaPasilloEntrada: data.limpiezaPasilloEntrada,
       moqueta: data.moqueta,
       fregadoDeSuelosConFregona: data.fregadoDeSuelosConFregona,
+      aspiradoraSinMoqueta: data.aspiradoraSinMoqueta,
+      limpiezaDeDespachos: data.limpiezaDeDespachos,
+      limpiezaDeMesasZonasDiafanas: data.limpiezaDeMesasZonasDiafanas,
     });
 
     setCurrentForm("formTwo");

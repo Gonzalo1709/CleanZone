@@ -21,6 +21,7 @@ import { Input } from "@/components/ui/input";
 import { Switch } from "@/components/ui/switch";
 import { Checkbox } from "@radix-ui/react-checkbox";
 import { Divide } from "lucide-react";
+import { RadioGroup, RadioGroupItem } from "@radix-ui/react-radio-group";
 
 interface FormTwoProps {
   currentForm: string;
@@ -39,6 +40,40 @@ const items = [
   { id: "SA", label: "SA" },
 ];
 
+const diasDeLaSemanaValues = [
+  {
+    label: "1 día",
+    value: "1",
+  },
+  {
+    label: "2 días",
+    value: "2",
+  },
+  {
+    label: "3 días",
+    value: "3",
+  },
+  {
+    label: "4 días",
+    value: "4",
+  },
+  {
+    label: "5 días",
+    value: "5",
+  },
+];
+
+const diasEnFinDeSemanaValues = [
+  {
+    label: "Sabado",
+    value: "sabado",
+  },
+  {
+    label: "Domingo",
+    value: "domingo",
+  },
+];
+
 const planDeTrabajo = [
   {
     id: "limpiezaPasilloEntrada",
@@ -55,12 +90,32 @@ const planDeTrabajo = [
     name: "Fregado de suelos con fregona",
     items: items,
   },
+  {
+    id: "aspiradoraSinMoqueta",
+    name: "Aspiradora sin moqueta",
+    items: items,
+  },
+  {
+    id: "limpiezaDeDespachos",
+    name: "Limpieza de despachos",
+    items: items,
+  },
+  {
+    id: "limpiezaDeMesasZonasDiafanas",
+    name: "Limpieza de mesas zonas diafanas",
+    items: items,
+  },
 ];
 
 const formSchema = z.object({
+  diasDeLaSemana: z.string(),
+  diasEnFinDeSemana: z.array(z.string()),
   limpiezaPasilloEntrada: z.array(z.string()),
   moqueta: z.array(z.string()),
   fregadoDeSuelosConFregona: z.array(z.string()),
+  aspiradoraSinMoqueta: z.array(z.string()),
+  limpiezaDeDespachos: z.array(z.string()),
+  limpiezaDeMesasZonasDiafanas: z.array(z.string()),
 });
 
 const FormTwo: React.FC<FormTwoProps> = ({
@@ -72,9 +127,14 @@ const FormTwo: React.FC<FormTwoProps> = ({
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
+      diasDeLaSemana: data.diasDeLaSemana.toString(),
+      diasEnFinDeSemana: data.diasEnFinDeSemana,
       limpiezaPasilloEntrada: data.limpiezaPasilloEntrada,
       moqueta: data.moqueta,
       fregadoDeSuelosConFregona: data.fregadoDeSuelosConFregona,
+      aspiradoraSinMoqueta: data.aspiradoraSinMoqueta,
+      limpiezaDeDespachos: data.limpiezaDeDespachos,
+      limpiezaDeMesasZonasDiafanas: data.limpiezaDeMesasZonasDiafanas,
     },
   });
 
@@ -82,9 +142,14 @@ const FormTwo: React.FC<FormTwoProps> = ({
   function goBack(values: z.infer<typeof formSchema>) {
     setData({
       ...data,
+      diasDeLaSemana: parseInt(values.diasDeLaSemana),
+      diasEnFinDeSemana: values.diasEnFinDeSemana,
       limpiezaPasilloEntrada: values.limpiezaPasilloEntrada,
       moqueta: values.moqueta,
       fregadoDeSuelosConFregona: values.fregadoDeSuelosConFregona,
+      aspiradoraSinMoqueta: values.aspiradoraSinMoqueta,
+      limpiezaDeDespachos: values.limpiezaDeDespachos,
+      limpiezaDeMesasZonasDiafanas: values.limpiezaDeMesasZonasDiafanas,
     });
     setCurrentForm("formOne");
   }
@@ -92,9 +157,14 @@ const FormTwo: React.FC<FormTwoProps> = ({
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setData({
       ...data,
+      diasDeLaSemana: parseInt(values.diasDeLaSemana),
+      diasEnFinDeSemana: values.diasEnFinDeSemana,
       limpiezaPasilloEntrada: values.limpiezaPasilloEntrada,
       moqueta: values.moqueta,
       fregadoDeSuelosConFregona: values.fregadoDeSuelosConFregona,
+      aspiradoraSinMoqueta: values.aspiradoraSinMoqueta,
+      limpiezaDeDespachos: values.limpiezaDeDespachos,
+      limpiezaDeMesasZonasDiafanas: values.limpiezaDeMesasZonasDiafanas,
     });
 
     // attach branch to object
@@ -103,7 +173,9 @@ const FormTwo: React.FC<FormTwoProps> = ({
     });
 
     // add new values to data state
-    body["limpiezaPasilloEntrada"] = values.limpiezaPasilloEntrada;
+    body["diasDeLaSemana"] = parseInt(values.diasDeLaSemana);
+    (body["diasEnFinDeSemana"] = values.diasEnFinDeSemana),
+      (body["limpiezaPasilloEntrada"] = values.limpiezaPasilloEntrada);
     body["moqueta"] = values.moqueta;
     body["fregadoDeSuelosConFregona"] = values.fregadoDeSuelosConFregona;
     console.log(body);
@@ -136,6 +208,91 @@ const FormTwo: React.FC<FormTwoProps> = ({
     <div>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+          <FormField
+            control={form.control}
+            name="diasDeLaSemana"
+            render={({ field }) => (
+              <FormItem className="space-y-3">
+                <FormLabel className="text-lg font-semibold">
+                  Días de la semana
+                </FormLabel>
+                <FormControl className="">
+                  <RadioGroup
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                    className="flex space-x-1 gap-2 flex-wrap justify-center"
+                  >
+                    {diasDeLaSemanaValues.map((item) => (
+                      <FormItem
+                        key={item.value}
+                        className="flex items-center space-x-3 space-y-0"
+                      >
+                        <FormControl>
+                          <RadioGroupItem
+                            value={item.value}
+                            className="bg-slate-500 p-2 aria-checked:bg-blue-600 rounded-full"
+                          />
+                        </FormControl>
+                        <FormLabel className="font-normal">
+                          {item.label}
+                        </FormLabel>
+                      </FormItem>
+                    ))}
+                  </RadioGroup>
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <div className="">
+            <FormLabel className="text-base">Días en fin de semana</FormLabel>
+          </div>
+          <div className="flex items-center justify-center space-x-5">
+            {diasEnFinDeSemanaValues.map((item) => (
+              <FormField
+                key={item.value}
+                control={form.control}
+                name="diasEnFinDeSemana"
+                render={() => (
+                  <FormItem>
+                    <FormField
+                      control={form.control}
+                      name="diasEnFinDeSemana"
+                      render={({ field }) => {
+                        return (
+                          <FormItem className="flex items-center mt-[-25px]">
+                            <FormControl>
+                              <div className="">
+                                <Checkbox
+                                  className="p-2 rounded-sm bg-slate-500 aria-checked:bg-blue-600"
+                                  checked={field.value?.includes(item.value)}
+                                  onCheckedChange={(checked) => {
+                                    return checked
+                                      ? field.onChange([
+                                          ...field.value,
+                                          item.value,
+                                        ])
+                                      : field.onChange(
+                                          field.value?.filter(
+                                            (value) => value !== item.value
+                                          )
+                                        );
+                                  }}
+                                />
+                              </div>
+                            </FormControl>
+                            <FormLabel className="ml-1">{item.label}</FormLabel>
+                          </FormItem>
+                        );
+                      }}
+                    />
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            ))}
+          </div>
+
           <div className="mb-4 flex justify-end  font-bold text-lg">
             {items.map((item) => (
               <div key={item.id} className="ml-[19px]">

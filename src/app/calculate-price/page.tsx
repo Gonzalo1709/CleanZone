@@ -23,9 +23,14 @@ const CalculatePricePage = () => {
     cuartosDeBanoNumber: 0,
     observaciones: "",
     // Second Form:
+    diasDeLaSemana: 1,
+    diasEnFinDeSemana: [],
     limpiezaPasilloEntrada: [],
     moqueta: [],
     fregadoDeSuelosConFregona: [],
+    aspiradoraSinMoqueta: [],
+    limpiezaDeDespachos: [],
+    limpiezaDeMesasZonasDiafanas: [],
   });
 
   return (
@@ -49,6 +54,11 @@ const CalculatePricePage = () => {
         {currentForm === "formOne" ? (
           <h1 className="text-2xl font-semibold">
             PASO 1 Información del Inmueble
+          </h1>
+        ) : null}
+        {currentForm === "formTwo" ? (
+          <h1 className="text-2xl font-semibold">
+            PASO 2 Frecuencia del Servicio
           </h1>
         ) : null}
       </div>

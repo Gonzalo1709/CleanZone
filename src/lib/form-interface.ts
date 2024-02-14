@@ -14,8 +14,13 @@ export interface dataType {
     cuartosDeBanoNumber: number;
     observaciones: string;
     // second form:
+    diasDeLaSemana: number;
+    diasEnFinDeSemana: Array<string>;
     limpiezaPasilloEntrada: Array<string>;
     moqueta: Array<string>;
     fregadoDeSuelosConFregona: Array<string>;
+    aspiradoraSinMoqueta: Array<string>;
+    limpiezaDeDespachos: Array<string>;
+    limpiezaDeMesasZonasDiafanas: Array<string>;
   }
   
