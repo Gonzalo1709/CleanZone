@@ -104,6 +104,31 @@ const planDeTrabajo = [
     name: "Limpieza de mesas zonas diafanas",
     items: items,
   },
+  {
+    id: "limpiezaDeSillas",
+    name: "Limpieza de sillas",
+    items: items,
+  },
+  {
+    id: "limpiezaDeTelefonos",
+    name: "Limpieza de telefonos",
+    items: items,
+  },
+  {
+    id: "LimpiezaDeCocinas",
+    name: "Limpieza de cocinas",
+    items: items,
+  },
+  {
+    id: "limpiezaDeVajillas",
+    name: "Limpieza de vajillas",
+    items: items,
+  },
+  {
+    id: "limpiezaDeCuartosDeBano",
+    name: "Limpieza de cuartos de baño",
+    items: items,
+  },
 ];
 
 const formSchema = z.object({
@@ -115,6 +140,11 @@ const formSchema = z.object({
   aspiradoraSinMoqueta: z.array(z.string()),
   limpiezaDeDespachos: z.array(z.string()),
   limpiezaDeMesasZonasDiafanas: z.array(z.string()),
+  limpiezaDeSillas: z.array(z.string()),
+  limpiezaDeTelefonos: z.array(z.string()),
+  LimpiezaDeCocinas: z.array(z.string()),
+  limpiezaDeVajillas: z.array(z.string()),
+  limpiezaDeCuartosDeBano: z.array(z.string()),
 });
 
 const FormTwo: React.FC<FormTwoProps> = ({
@@ -134,6 +164,11 @@ const FormTwo: React.FC<FormTwoProps> = ({
       aspiradoraSinMoqueta: data.aspiradoraSinMoqueta,
       limpiezaDeDespachos: data.limpiezaDeDespachos,
       limpiezaDeMesasZonasDiafanas: data.limpiezaDeMesasZonasDiafanas,
+      limpiezaDeSillas: data.limpiezaDeSillas,
+      limpiezaDeTelefonos: data.limpiezaDeTelefonos,
+      LimpiezaDeCocinas: data.LimpiezaDeCocinas,
+      limpiezaDeVajillas: data.limpiezaDeVajillas,
+      limpiezaDeCuartosDeBano: data.limpiezaDeCuartosDeBano,
     },
   });
 
@@ -149,6 +184,11 @@ const FormTwo: React.FC<FormTwoProps> = ({
       aspiradoraSinMoqueta: values.aspiradoraSinMoqueta,
       limpiezaDeDespachos: values.limpiezaDeDespachos,
       limpiezaDeMesasZonasDiafanas: values.limpiezaDeMesasZonasDiafanas,
+      limpiezaDeSillas: values.limpiezaDeSillas,
+      limpiezaDeTelefonos: values.limpiezaDeTelefonos,
+      LimpiezaDeCocinas: values.LimpiezaDeCocinas,
+      limpiezaDeVajillas: values.limpiezaDeVajillas,
+      limpiezaDeCuartosDeBano: values.limpiezaDeCuartosDeBano,
     });
     setCurrentForm("formOne");
   }
@@ -164,6 +204,11 @@ const FormTwo: React.FC<FormTwoProps> = ({
       aspiradoraSinMoqueta: values.aspiradoraSinMoqueta,
       limpiezaDeDespachos: values.limpiezaDeDespachos,
       limpiezaDeMesasZonasDiafanas: values.limpiezaDeMesasZonasDiafanas,
+      limpiezaDeSillas: values.limpiezaDeSillas,
+      limpiezaDeTelefonos: values.limpiezaDeTelefonos,
+      LimpiezaDeCocinas: values.LimpiezaDeCocinas,
+      limpiezaDeVajillas: values.limpiezaDeVajillas,
+      limpiezaDeCuartosDeBano: values.limpiezaDeCuartosDeBano,
       // Third Form:
       nombreEmpresa: data.nombreEmpresa,
       direccion: data.direccion,

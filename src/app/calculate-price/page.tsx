@@ -32,6 +32,11 @@ const CalculatePricePage = () => {
     aspiradoraSinMoqueta: [],
     limpiezaDeDespachos: [],
     limpiezaDeMesasZonasDiafanas: [],
+    limpiezaDeSillas: [],
+    limpiezaDeTelefonos: [],
+    LimpiezaDeCocinas: [],
+    limpiezaDeVajillas: [],
+    limpiezaDeCuartosDeBano: [],
     // Third Form:
     nombreEmpresa: "",
     direccion: "",
@@ -44,15 +49,15 @@ const CalculatePricePage = () => {
   return (
     <div className="text-center my-10  ml-auto mr-auto p-5">
       <div className="flex justify-center space-x-14">
-        <div className={currentForm === "formOne" ? 'text-[#2563eb]' : ""}>
+        <div className={currentForm === "formOne" ? "text-[#2563eb]" : ""}>
           <h1 className="text-xl font-semibold">PASO 1</h1>
           <p className="text-lg font-semibold">Inmueble</p>
         </div>
-        <div className={currentForm === "formTwo" ? 'text-[#2563eb]' : ""}>
+        <div className={currentForm === "formTwo" ? "text-[#2563eb]" : ""}>
           <h1 className="text-xl font-semibold">PASO 2</h1>
           <p className="text-lg font-semibold">Servicio</p>
         </div>
-        <div className={currentForm === "formThree" ? 'text-[#2563eb]' : ""}>
+        <div className={currentForm === "formThree" ? "text-[#2563eb]" : ""}>
           <h1 className="text-xl font-semibold">PASO 3</h1>
           <p className="text-lg font-semibold">Cliente</p>
         </div>

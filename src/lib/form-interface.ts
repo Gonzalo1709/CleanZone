@@ -23,6 +23,11 @@ export interface dataType {
   aspiradoraSinMoqueta: Array<string>;
   limpiezaDeDespachos: Array<string>;
   limpiezaDeMesasZonasDiafanas: Array<string>;
+  limpiezaDeSillas: Array<string>;
+  limpiezaDeTelefonos: Array<string>;
+  LimpiezaDeCocinas: Array<string>;
+  limpiezaDeVajillas: Array<string>;
+  limpiezaDeCuartosDeBano: Array<string>;
   // third form:
   nombreEmpresa: string;
   direccion: string;

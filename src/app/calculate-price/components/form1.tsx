@@ -89,7 +89,7 @@ const FormOne: React.FC<FormOneProps> = ({
       cuartosDeBano: values.cuartosDeBano,
       cuartosDeBanoNumber: values.cuartosDeBanoNumber,
       observaciones: values.observaciones,
-      // Second Form: 
+      // Second Form:
       diasDeLaSemana: data.diasDeLaSemana,
       diasEnFinDeSemana: data.diasEnFinDeSemana,
       limpiezaPasilloEntrada: data.limpiezaPasilloEntrada,
@@ -98,6 +98,11 @@ const FormOne: React.FC<FormOneProps> = ({
       aspiradoraSinMoqueta: data.aspiradoraSinMoqueta,
       limpiezaDeDespachos: data.limpiezaDeDespachos,
       limpiezaDeMesasZonasDiafanas: data.limpiezaDeMesasZonasDiafanas,
+      limpiezaDeSillas: data.limpiezaDeSillas,
+      limpiezaDeTelefonos: data.limpiezaDeTelefonos,
+      LimpiezaDeCocinas: data.LimpiezaDeCocinas,
+      limpiezaDeVajillas: data.limpiezaDeVajillas,
+      limpiezaDeCuartosDeBano: data.limpiezaDeCuartosDeBano,
       // Third Form:
       nombreEmpresa: data.nombreEmpresa,
       direccion: data.direccion,
@@ -375,9 +380,7 @@ const FormOne: React.FC<FormOneProps> = ({
             <FormItem>
               <FormLabel className="text-lg">Observaciones</FormLabel>
               <FormControl>
-                <Textarea
-                  {...field}
-                />
+                <Textarea {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
