@@ -7,6 +7,12 @@ const nextConfig = {
         hostname: "czwebpageresources.s3.amazonaws.com",
         pathname: "**",
       },
+      {
+        protocol: "https",
+        hostname: "avatars.githubusercontent.com",
+        port: '',
+        pathname: "/u/**",
+      },
     ],
   },
   // reactStrictMode: true,
