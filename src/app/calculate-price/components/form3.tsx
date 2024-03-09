@@ -95,13 +95,16 @@ const FormThree: React.FC<FormThreeProps> = ({
     body["telefonoContacto"] = values.telefonoContacto;
     body["email"] = values.email;
 
-    console.log(body);
+    const formatedBody = {
+      TableName: "bookings",
+      Item: body,
+    };
 
     // send data
     try {
       const { data, status } = await axios.post(
-        "https://q8y3gkmsnf.execute-api.us-east-1.amazonaws.com/dev/bookings",
-        JSON.stringify(body),
+        "https://q8y3gkmsnf.execute-api.us-east-1.amazonaws.com/dev/handleAddBooking",
+        JSON.stringify(formatedBody),
         {
           headers: {
             "Content-Type": "application/json",
@@ -109,7 +112,8 @@ const FormThree: React.FC<FormThreeProps> = ({
           },
         }
       );
-      console.log(status);
+      console.log("status", status);
+      console.log("data", data);
       return data;
     } catch (error) {
       if (axios.isAxiosError(error)) {
