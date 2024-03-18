@@ -1,6 +1,5 @@
 import NextAuth from "next-auth";
 import type { NextAuthOptions } from "next-auth";
-import GithubProvider from "next-auth/providers/github";
 import CognitoProvider from "next-auth/providers/cognito";
 
 export const authOptions: NextAuthOptions = {
@@ -11,12 +10,13 @@ export const authOptions: NextAuthOptions = {
       issuer: process.env.COGNITO_ISSUER,
     }),
   ],
-  // providers: [
-  //   GithubProvider({
-  //     clientId: process.env.GITHUB_ID!,
-  //     clientSecret: process.env.GITHUB_SECRET!,
-  //   }),
-  // ]
+  secret: process.env.NEXTAUTH_SECRET!,
+  session: {
+    strategy: "jwt",
+  },
+  jwt: {
+    secret: process.env.NEXTAUTH_SECRET!,
+  },
 };
 
 const handler = NextAuth(authOptions);
