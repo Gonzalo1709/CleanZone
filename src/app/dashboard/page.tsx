@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 
 import AuthProvider from "../authprovider";
 import { SignInButton, SignOutButton } from "@/components/buttons";
+import { TableDemo } from "./components/table";
 
 const Dashboard = async () => {
   const session = await getServerSession();
@@ -20,9 +21,8 @@ const Dashboard = async () => {
           <SignInButton />
           <SignOutButton />
         </div>
-        
-        <div className="bg-slate-200 h-[500px]">
-
+        <div className="h-[500px] bg-slate-100">
+          <TableDemo />
         </div>
       </div>
     </AuthProvider>

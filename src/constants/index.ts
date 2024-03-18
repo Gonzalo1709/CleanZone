@@ -16,6 +16,10 @@ export const links = [
     href: "careers",
   },
   {
+    title: "Management",
+    href: "management",
+  },
+  {
     title: "Contact Us",
     href: "contact-us",
   },
