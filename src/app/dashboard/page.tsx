@@ -20,6 +20,10 @@ const Dashboard = async () => {
           <SignInButton />
           <SignOutButton />
         </div>
+        
+        <div className="bg-slate-200 h-[500px]">
+
+        </div>
       </div>
     </AuthProvider>
   );
