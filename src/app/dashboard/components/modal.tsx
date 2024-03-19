@@ -55,39 +55,44 @@ const test = [
   },
 ];
 
+const caca = [
+  { text: "¿Es necesario limpiar después de la reforma?", answer: "yes" },
+  { text: "Metros Cuadrados", answer: "yes" },
+  { text: "Número de despachos individuales", answer: "yes" },
+  { text: "¿El suelo es de moqueta?", answer: "yes" },
+  { text: "Limpieza periódica de moqueta", answer: "yes" },
+  { text: "Una vez cada", answer: "yes" },
+  { text: "Número total de puestos de trabajo", answer: "yes" },
+  { text: "Número total de sillas", answer: "yes" },
+  { text: "¿Tiene cocina u office?", answer: "yes" },
+  { text: "¿Es necesario limpiar vajillas?", answer: "yes" },
+  { text: "¿Tiene cuartos de baño?", answer: "yes" },
+  { text: "Observaciones", answer: "yes" },
+];
+
 export function DialogDemo() {
   return (
     <Dialog>
       <DialogTrigger asChild>
         <Button variant="outline">Info</Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px] bg-white">
+      <DialogContent className=" bg-white">
         <DialogHeader>
           <DialogTitle>Edit profile</DialogTitle>
           <DialogDescription>
             Make changes to your profile here. Click save when youre done.
           </DialogDescription>
         </DialogHeader>
-        <div className="grid gap-4 py-4">
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="name" className="text-right">
-              Name
-            </Label>
-            <Input
-              id="name"
-              defaultValue="Pedro Duarte"
-              className="col-span-3"
-            />
-          </div>
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="username" className="text-right">
-              Username
-            </Label>
-            <Input
-              id="username"
-              defaultValue="@peduarte"
-              className="col-span-3"
-            />
+        <div className="">
+          <div>
+            <table className="">
+              {caca.map((item) => (
+                <tr key={item.text} className="border-1">
+                  <td>{item.text}</td>
+                  <td className="pl-5">{item.answer}</td>
+                </tr>
+              ))}
+            </table>
           </div>
         </div>
         <DialogFooter>
