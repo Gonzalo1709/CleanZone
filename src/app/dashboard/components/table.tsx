@@ -39,7 +39,7 @@ export function TableDemo() {
         "https://q8y3gkmsnf.execute-api.us-east-1.amazonaws.com/dev/getBookings?TableName=bookings"
       )
       .then(function (response) {
-        console.log(response.data.Items);
+        // console.log(response.data.Items);
         setData(response.data.Items);
       })
       .catch(function (error) {
@@ -71,7 +71,7 @@ export function TableDemo() {
               <TableCell className="">{info.telefonoContacto.N}</TableCell>
               <TableCell className="">
                 {/* <Button className="h-[20px] w-[20px] rounded-md bg-green-500"></Button> */}
-                <DialogDemo />
+                <DialogDemo info={info} />
               </TableCell>
             </TableRow>
           ))}

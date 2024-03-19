@@ -12,65 +12,31 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
 import { dataType } from "@/lib/form-interface";
+import React, { useState } from "react";
 
-const test = [
-  {
-    TableName: "bookings",
-    Item: {
-      limpiarDespuesDeReforma: false,
-      metrosCuadrados: 0,
-      numeroDeDespachosIndividuales: 0,
-      sueloDeMoqueta: true,
-      limpiezaPeriodicaDeMoqueta: true,
-      unaVezCada: 0,
-      totalDePuestosDeTrabajo: 0,
-      totalDeSillas: 0,
-      cocinaUOffice: false,
-      cocinaUOfficeNumber: 0,
-      limpiarVajillas: false,
-      cuartosDeBano: false,
-      cuartosDeBanoNumber: 0,
-      observaciones: "test1312",
-      diasDeLaSemana: 1,
-      diasEnFinDeSemana: [],
-      limpiezaPasilloEntrada: [],
-      moqueta: [],
-      fregadoDeSuelosConFregona: [],
-      aspiradoraSinMoqueta: [],
-      limpiezaDeDespachos: ["martes", "lunes"],
-      limpiezaDeMesasZonasDiafanas: [],
-      limpiezaDeSillas: [],
-      limpiezaDeTelefonos: [],
-      LimpiezaDeCocinas: [],
-      limpiezaDeVajillas: [],
-      limpiezaDeCuartosDeBano: [],
-      nombreEmpresa: "tedasda",
-      direccion: "dads",
-      codigoPostal: 0,
-      personaContacto: "",
-      telefonoContacto: 12313123,
-      email: "dasd@gmail.com",
-      branch: "us-2",
-    },
-  },
+const form1 = [
+  "¿Es necesario limpiar después de la reforma?",
+  "Metros Cuadrados",
+  "Número de despachos individuales",
+  "¿El suelo es de moqueta?",
+  "Limpieza periódica de moqueta",
+  "Una vez cada",
+  "Número total de puestos de trabajo",
+  "Número total de sillas",
+  "¿Tiene cocina u office?",
+  "¿Es necesario limpiar vajillas?",
+  "¿Tiene cuartos de baño?",
+  "Observaciones",
 ];
 
-const caca = [
-  { text: "¿Es necesario limpiar después de la reforma?", answer: "yes" },
-  { text: "Metros Cuadrados", answer: "yes" },
-  { text: "Número de despachos individuales", answer: "yes" },
-  { text: "¿El suelo es de moqueta?", answer: "yes" },
-  { text: "Limpieza periódica de moqueta", answer: "yes" },
-  { text: "Una vez cada", answer: "yes" },
-  { text: "Número total de puestos de trabajo", answer: "yes" },
-  { text: "Número total de sillas", answer: "yes" },
-  { text: "¿Tiene cocina u office?", answer: "yes" },
-  { text: "¿Es necesario limpiar vajillas?", answer: "yes" },
-  { text: "¿Tiene cuartos de baño?", answer: "yes" },
-  { text: "Observaciones", answer: "yes" },
-];
+export const DialogDemo: React.FC<dataType> = ({ info }) => {
+  const [form1Data, setForm1Data] = useState({});
 
-export function DialogDemo() {
+  // setForm1Data(form1Data => ({
+  //   ...form1Data,
+  //   info.limpiarDespuesDeReforma,
+  // }))
+  console.log(info);
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -85,20 +51,28 @@ export function DialogDemo() {
         </DialogHeader>
         <div className="">
           <div>
-            <table className="">
-              {caca.map((item) => (
-                <tr key={item.text} className="border-1">
-                  <td>{item.text}</td>
-                  <td className="pl-5">{item.answer}</td>
-                </tr>
-              ))}
-            </table>
+            <div className="flex">
+              <div>
+                {form1.map((item) => (
+                  <h1 key={item}>{item}</h1>
+                ))}
+              </div>
+
+              <div>
+                <h1>yes</h1>
+                <h1>yes</h1>
+                <h1>yes</h1>
+                <h1>yes</h1>
+                <h1>yes</h1>
+                <h1>yes</h1>
+              </div>
+            </div>
           </div>
         </div>
         <DialogFooter>
-          <Button type="submit">Save changes</Button>
+          <Button type="submit">Invoice</Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>
   );
-}
+};
