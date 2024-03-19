@@ -28,8 +28,6 @@ export default function HomepageCarousel() {
       setShowArrow(true);
     }
 
-    console.log(carouselApi);
-
     if (!carouselApi) {
       return;
     }
