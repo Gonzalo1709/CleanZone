@@ -1,6 +1,6 @@
 import { dataType } from "@/lib/form-interface";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Dispatch, SetStateAction } from "react";
 import axios from "axios";
 
@@ -19,10 +19,17 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Switch } from "@/components/ui/switch";
-import { Checkbox } from "@radix-ui/react-checkbox";
-import { Divide } from "lucide-react";
-import { RadioGroup, RadioGroupItem } from "@radix-ui/react-radio-group";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
+import { DialogOverlay } from "@radix-ui/react-dialog";
+
 
 interface FormThreeProps {
   currentForm: string;
@@ -46,6 +53,16 @@ const FormThree: React.FC<FormThreeProps> = ({
   data,
   setData,
 }) => {
+
+  const [allowReload, setAllowReload] = useState(false);
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    if (allowReload && !open) {
+      window.location.href = "/";
+    }
+  }, [open]);
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -114,6 +131,8 @@ const FormThree: React.FC<FormThreeProps> = ({
       );
       console.log("status", status);
       console.log("data", data);
+      setAllowReload(true);
+      setOpen(true);
       return data;
     } catch (error) {
       if (axios.isAxiosError(error)) {
@@ -128,6 +147,25 @@ const FormThree: React.FC<FormThreeProps> = ({
 
   return (
     <div>
+      <Dialog open={open} onOpenChange={setOpen}>
+        <DialogTrigger/>
+        <DialogOverlay>
+          <DialogContent className="bg-[#0b132b] text-white border-[#0b132b]">
+            <DialogHeader >
+              <DialogTitle>Success</DialogTitle>
+              <DialogDescription>
+                Your request has been successfully submitted. A representative will contact you soon.
+              </DialogDescription>
+            </DialogHeader>
+            <DialogFooter>
+              <Button className="hover:bg-[#3a506b] bg-[#1c2541]" type="button" onClick={() => window.location.href = '/'}>
+                Close
+              </Button>
+            </DialogFooter>
+          </DialogContent>
+        </DialogOverlay>
+      </Dialog>
+
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
