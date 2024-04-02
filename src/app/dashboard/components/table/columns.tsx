@@ -11,6 +11,7 @@ import {
 } from "@radix-ui/react-dropdown-menu";
 import { Button } from "@/components/ui/button";
 import { MoreHorizontal } from "lucide-react";
+import { DialogDemo } from "../modal";
 
 export type Clients = {
   name: string;
@@ -36,15 +37,24 @@ export const columns: ColumnDef<Clients>[] = [
     accessorKey: "telefonoContacto",
     header: "Phone Number",
   },
-  // {
-  //   accessorKey: "moreInfo",
-  //   header: "More Info",
-  //   enableHiding: false,
-  // },
+  {
+    accessorKey: "creationDate",
+    header: "Date",
+    // cell: ({ row }) => {
+    //   // console.log(row.original.creationDate);
+    //   console.log(row.getValue("creationDate"));
+
+    //   const dateTimeString = row.original.creationDate;
+    //   const formattedDate = dateTimeString.split(" ")[0];
+
+    //   return <div>{formattedDate}</div>;
+    // },
+  },
   {
     id: "actions",
     enableHiding: false,
     cell: ({ row }) => {
+      // console.log(row.original);
       return (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -56,7 +66,8 @@ export const columns: ColumnDef<Clients>[] = [
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>View customer</DropdownMenuItem>
+            <DialogDemo info={row.original} />
+            <Button onClick={() => console.log(row.original)}>test</Button>
           </DropdownMenuContent>
         </DropdownMenu>
       );

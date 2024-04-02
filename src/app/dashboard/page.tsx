@@ -18,18 +18,6 @@ const Dashboard = async () => {
     redirect("/api/auth/signin");
   }
 
-  // async function getData(): Promise<Clients[]> {
-  //   return new Array(3).fill(null).map(() => ({
-  //     name: "test",
-  //     company: "test",
-  //     email: "test@test.com",
-  //     phone: 9937829,
-  //   }));
-  // }
-
-  // const test = await getData();
-  // console.log(test);
-
   async function getData() {
     const res = await fetch(
       "https://q8y3gkmsnf.execute-api.us-east-1.amazonaws.com/dev/getBookings?TableName=bookings"
@@ -37,10 +25,11 @@ const Dashboard = async () => {
     const data = await res.json();
 
     // format data
-    const formattedArrayOfObjects = data.Items.map((obj) => {
+    const formattedArrayOfObjects = data.Items.map((obj: any) => {
       const extractedValues = {};
       for (const key in obj) {
         const value = obj[key];
+        //@ts-ignore
         extractedValues[key] = Object.values(value)[0];
       }
       return extractedValues;
@@ -48,17 +37,16 @@ const Dashboard = async () => {
     return formattedArrayOfObjects;
   }
   const data = await getData();
-  console.log(data);
+  // console.log(data);
 
   return (
     <AuthProvider>
       <div>
-        Dashboard Page
         <div>
           <SignInButton />
           <SignOutButton />
         </div>
-        <div className="h-[500px] bg-slate-100">
+        <div className="h-[500px]">
           <DataTable columns={columns} data={data} />
           {/* <TableDemo /> */}
           {/* <DataTableDemo /> */}
