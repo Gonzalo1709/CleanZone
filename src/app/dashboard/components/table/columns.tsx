@@ -10,7 +10,7 @@ import {
   DropdownMenuTrigger,
 } from "@radix-ui/react-dropdown-menu";
 import { Button } from "@/components/ui/button";
-import { MoreHorizontal } from "lucide-react";
+import { ArrowUpDown, MoreHorizontal } from "lucide-react";
 import { DialogDemo } from "../modal";
 
 export type Clients = {
@@ -23,7 +23,17 @@ export type Clients = {
 export const columns: ColumnDef<Clients>[] = [
   {
     accessorKey: "personaContacto",
-    header: "Name",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Name
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      )
+    },
   },
   {
     accessorKey: "nombreEmpresa",
@@ -39,7 +49,17 @@ export const columns: ColumnDef<Clients>[] = [
   },
   {
     accessorKey: "creationDate",
-    header: "Date",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Date
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
     // cell: ({ row }) => {
     //   // console.log(row.original.creationDate);
     //   console.log(row.getValue("creationDate"));
@@ -64,10 +84,11 @@ export const columns: ColumnDef<Clients>[] = [
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuSeparator />
+            {/* <DropdownMenuLabel>Actions</DropdownMenuLabel> */}
+            {/* <DropdownMenuSeparator /> */}
+            {/* @ts-ignore */}
             <DialogDemo info={row.original} />
-            <Button onClick={() => console.log(row.original)}>test</Button>
+            {/* <Button onClick={() => console.log(row.original)}>test</Button> */}
           </DropdownMenuContent>
         </DropdownMenu>
       );

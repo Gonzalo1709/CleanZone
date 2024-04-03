@@ -59,8 +59,6 @@ export function DataTable<TData, TValue>({
     },
   });
 
-  console.log(data);
-
   return (
     <div className="w-full">
       <div className="flex items-center py-4">
@@ -83,16 +81,18 @@ export function DataTable<TData, TValue>({
               .getAllColumns()
               .filter((column) => column.getCanHide())
               .map((column) => {
+                // console.log(column.columnDef.header);
                 return (
                   <DropdownMenuCheckboxItem
                     key={column.id}
-                    className="capitalize"
+                    className="capitalize bg-white"
                     checked={column.getIsVisible()}
                     onCheckedChange={(value) =>
                       column.toggleVisibility(!!value)
                     }
                   >
-                    {column.id}
+                    {/* @ts-ignore */}
+                    {column.columnDef.header}
                   </DropdownMenuCheckboxItem>
                 );
               })}

@@ -16,6 +16,7 @@ import React, { useState } from "react";
 
 import { form1, form2, form3 } from "@/lib/form-interface";
 
+// @ts-ignore
 export const DialogDemo: React.FC<dataType> = ({ info }) => {
   // const [form1Data, setForm1Data] = useState({});
 
@@ -27,7 +28,7 @@ export const DialogDemo: React.FC<dataType> = ({ info }) => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline">Info</Button>
+        <Button variant="outline" className="bg-green-500">More Info</Button>
       </DialogTrigger>
       <DialogContent className="bg-white overflow-auto h-[80%] min-w-[50%]">
         <DialogHeader>
@@ -37,7 +38,22 @@ export const DialogDemo: React.FC<dataType> = ({ info }) => {
         </DialogHeader>
         <div className="">
           <div className="">
-            <table className="border-collapse border border-gray-400 w-full mb-5">
+            <table className="border-collapse border border-gray-400 w-full mb-8">
+              <tbody>
+                {form3.map((item) => (
+                  <tr key={item.id} className="bg-gray-200">
+                    <th className="py-2 px-4 border border-gray-400 text-left">
+                      {item.p}
+                    </th>
+                    <td className="py-2 px-4 border border-gray-400">
+                      {typeof info[item.id] === "string" && info[item.id]}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+
+            <table className="border-collapse border border-gray-400 w-full mb-8">
               <tbody>
                 {form1.map((item) => (
                   <tr key={item.id} className="bg-gray-200">
@@ -57,43 +73,12 @@ export const DialogDemo: React.FC<dataType> = ({ info }) => {
                 ))}
               </tbody>
             </table>
-            {/* <div className="flex mb-5">
-              <div>
-                {form1.map((item) => (
-                  <h1 key={item.id} className="mb-1">
-                    {item.p}
-                  </h1>
-                ))}
-              </div>
 
-              <div className="ml-auto">
-                {form1.map((item) => {
-                  if (info[item.id] === true) {
-                    return (
-                      <h1 key={item.id} className="mb-1 text-green-500">
-                        Si
-                      </h1>
-                    );
-                  } else if (info[item.id] === false) {
-                    return (
-                      <h1 key={item.id} className="mb-1 text-red-500">
-                        No
-                      </h1>
-                    );
-                  } else {
-                    return (
-                      <h1 key={item.id} className="mb-1">
-                        {info[item.id]}
-                      </h1>
-                    );
-                  }
-                })}
-              </div>
-            </div> */}
-            <table className="border-collapse border border-gray-400 w-full">
+            <table className="border-collapse border border-gray-400 w-full mb-8">
+              <caption className="font-bold">SA = Semanas Alternas</caption>
               <tbody>
                 {form2.map((item) => (
-                  <tr key={item.id}>
+                  <tr key={item.id} className="bg-gray-200">
                     <th className="py-2 px-4 border border-gray-400 text-left">
                       {item.p}
                     </th>
@@ -110,40 +95,6 @@ export const DialogDemo: React.FC<dataType> = ({ info }) => {
                 ))}
               </tbody>
             </table>
-
-            {/* <div className="flex">
-              <div>
-                {form2.map((item) => (
-                  <h1 key={item.id} className="mb-1">
-                    {item.p}
-                  </h1>
-                ))}
-              </div>
-
-              <div className="ml-auto">
-                {form2.map((item) => {
-                  // console.log(info[item.id]);
-                  if (typeof info[item.id] === "string") {
-                    return (
-                      <h1 key={item.id} className="mb-1">
-                        {info[item.id]}
-                      </h1>
-                    );
-                  } else if (info[item.id].length === 0) {
-                    return (
-                      <h1 key={item.id} className="text-red-500 mb-1">
-                        No
-                      </h1>
-                    );
-                  } else {
-                    return <DaysOfWeek key={item.id} days={info[item.id]} />;
-                    // return <h1 key={item.id}>test</h1>;
-                  }
-                })}
-              </div>
-            </div> */}
-
-            <h1 className="mb-5 font-bold ml-4 mt-2">SA* = Semanas Alternas</h1>
           </div>
         </div>
         <DialogFooter>
@@ -156,8 +107,8 @@ export const DialogDemo: React.FC<dataType> = ({ info }) => {
   );
 };
 
-const DaysOfWeek = ({ days }) => {
-  const formattedDays = days.map((item, index) => (
+const DaysOfWeek = ({ days }: any) => {
+  const formattedDays = days.map((item: any, index: any) => (
     <React.Fragment key={index}>
       {index > 0 && ", "}
       {item.S.slice(0, 3)}
