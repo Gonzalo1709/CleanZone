@@ -41,7 +41,7 @@ const Dashboard = async () => {
 
   return (
     <AuthProvider>
-      <div>
+      <div className="px-2 h-[100vh]">
         <div>
           <SignInButton />
           <SignOutButton />

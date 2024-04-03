@@ -1,17 +1,16 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
+import '@/app/globals.css';
 import Navbar from "@/components/navbar";
-import Footer from "@/components/footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Clean Zone",
+  title: "Dashboard",
   description: "Slogan here", // TODO: Add a slogan
-  // icons: {
-  //   icon: "/icon.png",
-  // },
+  icons: {
+    icon: '/icon.png', // /public path
+  },
 };
 
 export default function RootLayout({
@@ -24,7 +23,6 @@ export default function RootLayout({
       <body className={inter.className}>
         <Navbar />
         {children}
-        {/* <Footer /> */}
       </body>
     </html>
   );
