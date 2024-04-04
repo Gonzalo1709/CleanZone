@@ -37,7 +37,7 @@ const formSchema = z.object({
   limpiarVajillas: z.boolean(),
   cuartosDeBano: z.boolean(),
   cuartosDeBanoNumber: z.coerce.number(),
-  observaciones: z.string(),
+  observaciones: z.string().max(250),
 });
 
 interface FormOneProps {

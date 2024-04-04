@@ -30,7 +30,7 @@ export const DialogDemo: React.FC<dataType> = ({ info }) => {
       <DialogTrigger asChild>
         <Button variant="outline" className="bg-green-500">More Info</Button>
       </DialogTrigger>
-      <DialogContent className="bg-white overflow-auto h-[80%] min-w-[50%]">
+      <DialogContent className="bg-white overflow-auto h-[80%] min-w-[80%]">
         <DialogHeader>
           <DialogTitle>More Information</DialogTitle>
           {/* <DialogDescription> */}
@@ -60,7 +60,7 @@ export const DialogDemo: React.FC<dataType> = ({ info }) => {
                     <th className="py-2 px-4 border border-gray-400 text-left">
                       {item.p}
                     </th>
-                    <td className="py-2 px-4 border border-gray-400">
+                    <td className="py-2 px-4 border border-gray-400 max-w-full">
                       {info[item.id] === true && (
                         <span className="text-green-500">Si</span>
                       )}

@@ -14,6 +14,14 @@ export const authOptions: NextAuthOptions = {
   session: {
     strategy: "jwt",
   },
+  callbacks: {
+    async signIn({ user, account, profile, email, credentials }) {
+      return true;
+    },
+    async redirect({ url, baseUrl }) {
+      return '/dashboard';
+    },
+  },
   jwt: {
     secret: process.env.NEXTAUTH_SECRET!,
   },

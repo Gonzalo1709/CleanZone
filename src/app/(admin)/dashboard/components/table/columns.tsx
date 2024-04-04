@@ -23,6 +23,7 @@ export type Clients = {
 export const columns: ColumnDef<Clients>[] = [
   {
     accessorKey: "personaContacto",
+    
     header: ({ column }) => {
       return (
         <Button

@@ -43,8 +43,8 @@ const Dashboard = async () => {
     <AuthProvider>
       <div className="px-2 h-[100vh]">
         <div>
-          <SignInButton />
-          <SignOutButton />
+          {/* <SignInButton /> */}
+          {/* <SignOutButton /> */}
         </div>
         <div className="h-[500px]">
           <DataTable columns={columns} data={data} />
