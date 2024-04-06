@@ -20,8 +20,8 @@ const list = [
 
 const HowWeWork = () => {
   return (
-    <div className="mt-20 mb-7">
-      <h1 className="text-4xl font-medium text-[#293c72] text-center">
+    <div className="my-20">
+      <h1 className="text-4xl sm:text-5xl font-medium text-[#293c72] text-center">
         How We Work
       </h1>
       <div className="mx-5 sm:mx-20 flex justify-center">
