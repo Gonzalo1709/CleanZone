@@ -20,7 +20,7 @@ const socialLinks = [
 
 const Footer = () => {
   return (
-    <footer className="bg-[#0B132A] text-white">
+    <footer className="bg-[#14344B] text-white">
       <div className="flex-row sm:flex py-10 px-5 lg:px-32">
         <div className="mb-10 sm:mb-0 text-center sm:text-start">
           <h1 className="text-2xl">CleanZone</h1>

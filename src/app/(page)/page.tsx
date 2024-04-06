@@ -1,4 +1,5 @@
 import CalculatePrice from "@/components/calculate-price";
+import ContactUs from "@/components/contact-us";
 import HomepageCarousel from "@/components/homepage-carousel";
 import HowWeWork from "@/components/how-we-work";
 import Traits from "@/components/traits";
@@ -16,6 +17,7 @@ export default function Home() {
     <CalculatePrice />
     <Traits />
     <HowWeWork />
+    <ContactUs />
     </>
   );
 }
