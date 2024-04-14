@@ -15,9 +15,11 @@ export default function Home() {
     <>
     <HomepageCarousel />
     <CalculatePrice />
-    <Traits />
-    <HowWeWork />
-    <ContactUs />
+    <div className="bg-[#0b132a] py-20">
+      <Traits />
+      <HowWeWork />
+      <ContactUs />
+    </div>
     </>
   );
 }

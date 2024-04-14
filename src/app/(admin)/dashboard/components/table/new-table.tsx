@@ -1,6 +1,6 @@
 "use client";
 
-import * as React from "react";
+import React, { useEffect } from "react";
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -59,6 +59,15 @@ export function DataTable<TData, TValue>({
       sorting,
     },
   });
+
+  useEffect(() => {
+    setSorting([
+      {
+        desc: true,
+        id: "creationDate"
+      }
+    ])
+  }, [])
 
   return (
     <div className="w-full">
