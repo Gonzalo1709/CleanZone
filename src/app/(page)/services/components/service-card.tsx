@@ -25,7 +25,8 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ title, img }) => {
   return (
     <div className="">
       <div className="flex justify-center items-center content-center">
-        <div className="bg-[#DCD0FF] rounded-md">
+        <div className="rounded-md">
+        {/* <div className="bg-[#DCD0FF] rounded-md"> */}
           <Image src={img} width={500} height={500} alt="Test Image" />
 
           {/* <div className="text-2xl font-semibold text-[#383388] flex items-center mt-2">
@@ -37,7 +38,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ title, img }) => {
           <Accordion
             type="single"
             collapsible
-            className="max-w-[500px] px-2 border-b"
+            className="max-w-[500px] px-2"
           >
             <AccordionItem value="item-1">
               <AccordionTrigger className="text-2xl font-semibold text-[#383388]">
