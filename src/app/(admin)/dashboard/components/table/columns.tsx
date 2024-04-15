@@ -23,7 +23,7 @@ export type Clients = {
 export const columns: ColumnDef<Clients>[] = [
   {
     accessorKey: "personaContacto",
-    
+
     header: ({ column }) => {
       return (
         <Button
@@ -33,7 +33,7 @@ export const columns: ColumnDef<Clients>[] = [
           Name
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
-      )
+      );
     },
   },
   {
@@ -50,7 +50,6 @@ export const columns: ColumnDef<Clients>[] = [
   },
   {
     accessorKey: "creationDate",
-    
     header: ({ column }) => {
       return (
         <Button
@@ -62,15 +61,19 @@ export const columns: ColumnDef<Clients>[] = [
         </Button>
       );
     },
-    // cell: ({ row }) => {
-    //   // console.log(row.original.creationDate);
-    //   console.log(row.getValue("creationDate"));
+    cell: ({ row }) => {
+      //@ts-ignore
+      const dateString = row.original.creationDate;
+      // Convert the string to a Date object
+      var date = new Date(dateString);
 
-    //   const dateTimeString = row.original.creationDate;
-    //   const formattedDate = dateTimeString.split(" ")[0];
+      // Subtract 4 hours (Florida Time)
+      date.setTime(date.getTime() - 4 * 60 * 60 * 1000);
+      var formattedDate = date.toLocaleString();
 
-    //   return <div>{formattedDate}</div>;
-    // },
+
+      return <div>{formattedDate} GMT-4</div>;
+    },
   },
   {
     id: "actions",
