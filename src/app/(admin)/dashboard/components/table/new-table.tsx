@@ -159,12 +159,13 @@ export function DataTable<TData, TValue>({
           {/* {table.getFilteredSelectedRowModel().rows.length} of{" "} */}
           {table.getFilteredRowModel().rows.length} total entries
         </div>
-        <div className="space-x-2">
+        <div className="space-x-2 mt-3">
           <Button
             variant="outline"
             size="sm"
             onClick={() => table.previousPage()}
             disabled={!table.getCanPreviousPage()}
+            className="bg-white"
           >
             Previous
           </Button>
