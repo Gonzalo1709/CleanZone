@@ -5,14 +5,14 @@ import { Button } from "./ui/button";
 
 const ContactUs = () => {
   return (
-    <div className="my-20 flex justify-center items-center">
+    <div className="flex justify-center items-center">
       <div className="">
         <div className="bg-[#0B132A] p-5 rounded-xl flex justify-center items-center mx-10 sm:mx-32">
           <Image src={icon} height={300} width={200} alt="Logo" className="" />
         </div>
 
         <div className="text-center">
-          <h1 className="text-[#293C72] text-4xl sm:text-5xl mt-7 mb-4 font-medium">
+          <h1 className="text-[#6fffe8] text-4xl sm:text-5xl mt-7 mb-4 font-medium">
             Ready to get started?
           </h1>
           {/*eslint-disable-next-line react/no-unescaped-entities */}
