@@ -19,20 +19,6 @@ const Navbar = () => {
   return (
     <div>
       <div className="md:py-5 md:px-3 flex items-center bg-[#14344B] text-white h-[10vh] max-h-[100px]">
-        {/* normal navbar */}
-        {/* <div className="mr-auto hidden md:flex">
-          {links.map((link) => (
-            <Link
-              key={link.title}
-              href={"/" + link.href}
-              className="block px-3 py-2 rounded-md hover:bg-[#383388] text-lg"
-            >
-              {link.title}
-            </Link>
-          ))}
-        </div> */}
-
-        {/* navbar for mobile */}
         <div className="mr-auto ml-3 space-x-4 text-lg py-5">
           {/* <div className="mr-auto ml-3 space-x-4 md:hidden text-lg py-5"> */}
           <button type="button" onClick={handleClick} className="mt-2">
@@ -61,7 +47,13 @@ const Navbar = () => {
           <Link href="/">
             <h1 className="font-bold text-3xl text-[#8CF7FF] px-3 py-1 rounded-md flex items-center">
               CLEANZONE
-              <Image src={icon} height={200} width={75} alt="Logo" className="" />
+              <Image
+                src={icon}
+                height={200}
+                width={75}
+                alt="Logo"
+                className=""
+              />
               {/* <Image src={logoIcon} height={200} width={200} alt="Logo" /> */}
             </h1>
           </Link>
@@ -69,7 +61,7 @@ const Navbar = () => {
 
         <div className="ml-auto mr-3 mt-2">
           <button>
-            <Search color="#8CF7FF"  />
+            <Search color="#8CF7FF" />
           </button>
         </div>
       </div>

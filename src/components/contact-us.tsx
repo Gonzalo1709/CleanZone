@@ -5,7 +5,7 @@ import { Button } from "./ui/button";
 
 const ContactUs = () => {
   return (
-    <div className="flex justify-center items-center">
+    <div className="flex justify-center items-center mx-2">
       <div className="">
         <div className="bg-[#0B132A] p-5 rounded-xl flex justify-center items-center mx-10 sm:mx-32">
           <Image src={icon} height={300} width={200} alt="Logo" className="" />

@@ -6,16 +6,13 @@ import Traits from "@/components/traits";
 
 import Image from "next/image";
 
-
-
-
 export default function Home() {
 
   return (
     <>
     <HomepageCarousel />
     <CalculatePrice />
-    <div className="bg-[#0b132a] py-20">
+    <div className=" py-20">
       <Traits />
       <HowWeWork />
       <ContactUs />

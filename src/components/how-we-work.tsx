@@ -21,7 +21,8 @@ const list = [
 const HowWeWork = () => {
   return (
     <div className="my-20">
-      <h1 className="text-4xl sm:text-5xl font-medium text-[#6fffe8] text-center">
+      <h1 className="text-4xl sm:text-5xl font-medium text-[#0B132A] text-center">
+      {/* <h1 className="text-4xl sm:text-5xl font-medium text-[#6fffe8] text-center"> */}
         How We Work
       </h1>
       <div className="mx-5 sm:mx-20 flex justify-center">
@@ -29,12 +30,14 @@ const HowWeWork = () => {
           <ol className="list-none list-inside space-y-16">
             {list.map((item) => (
               <li className="relative pl-10 flex items-center" key={item.id}>
-                <span className="absolute left-0 text-6xl text-[#6fffe8]">
+                <span className="absolute left-0 text-6xl text-[#0B132A]">
+                {/* <span className="absolute left-0 text-6xl text-[#6fffe8]"> */}
                   {item.id}
                 </span>
                 <div className="ml-2 sm:ml-32 space-y-2">
                   <p className="text-lg text-[#5cc0be]">{item.h1}</p>
-                  <p className="text-white">{item.p}</p>
+                  {/* <p className="text-white">{item.p}</p> */}
+                  <p className="text-black">{item.p}</p>
                 </div>
               </li>
             ))}
