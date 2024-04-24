@@ -2,6 +2,7 @@ import React from "react";
 import icon from "../../public/icon.png";
 import Image from "next/image";
 import { Button } from "./ui/button";
+import Link from "next/link";
 
 const ContactUs = () => {
   return (
@@ -16,9 +17,15 @@ const ContactUs = () => {
             Ready to get started?
           </h1>
           {/*eslint-disable-next-line react/no-unescaped-entities */}
-          <h2 className="text-[#6CA8AC]">Let's create a cleaner space together</h2>
+          <h2 className="text-[#6CA8AC]">
+            Let's create a cleaner space together
+          </h2>
 
-          <Button className="bg-[#5CC0BE] mt-7 text-xl text-white p-6">Contact Us</Button>
+          <Link href='/calculate-price'>
+            <Button className="bg-[#5CC0BE] mt-7 text-xl text-white p-6">
+              Contact Us
+            </Button>
+          </Link>
         </div>
       </div>
     </div>

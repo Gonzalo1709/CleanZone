@@ -36,8 +36,7 @@ export const DialogDemo: React.FC<dataType> = ({ info }) => {
         { params: { branch: info.branch, id: info.id } }
       )
       .then((res) => {
-        console.log(res);
-        // alert('Entry was deleted')
+        // console.log(res);
         toast({
           description: "Entry was deleted.",
           action: (

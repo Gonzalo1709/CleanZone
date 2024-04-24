@@ -39,12 +39,12 @@ interface FormThreeProps {
 }
 
 const formSchema = z.object({
-  nombreEmpresa: z.string(),
-  direccion: z.string(),
-  codigoPostal: z.coerce.number(),
-  personaContacto: z.string(),
-  telefonoContacto: z.coerce.number(),
-  email: z.string(),
+  nombreEmpresa: z.string().min(1, { message: "Ingresar nombre"}),
+  direccion: z.string().min(1, { message: "Ingresar dirección"}),
+  codigoPostal: z.coerce.number().min(1, { message: "Ingresar código postal"}),
+  personaContacto: z.string().min(1, { message: "Ingresar nombre"}),
+  telefonoContacto: z.coerce.number().min(1, { message: "Ingresar teléfono"}),
+  email: z.string().min(1, { message: "Ingresar email"}),
 });
 
 const FormThree: React.FC<FormThreeProps> = ({
@@ -180,7 +180,7 @@ const FormThree: React.FC<FormThreeProps> = ({
                 <FormControl>
                   <Input {...field} />
                 </FormControl>
-                <FormMessage />
+                <FormMessage className="text-red-600" />
               </FormItem>
             )}
           />
@@ -194,7 +194,7 @@ const FormThree: React.FC<FormThreeProps> = ({
                 <FormControl>
                   <Input {...field} />
                 </FormControl>
-                <FormMessage />
+                <FormMessage className="text-red-600" />
               </FormItem>
             )}
           />
@@ -208,7 +208,7 @@ const FormThree: React.FC<FormThreeProps> = ({
                 <FormControl>
                   <Input type="number" {...field} />
                 </FormControl>
-                <FormMessage />
+                <FormMessage className="text-red-600" />
               </FormItem>
             )}
           />
@@ -222,7 +222,7 @@ const FormThree: React.FC<FormThreeProps> = ({
                 <FormControl>
                   <Input {...field} />
                 </FormControl>
-                <FormMessage />
+                <FormMessage className="text-red-600" />
               </FormItem>
             )}
           />
@@ -236,7 +236,7 @@ const FormThree: React.FC<FormThreeProps> = ({
                 <FormControl>
                   <Input type="number" {...field} />
                 </FormControl>
-                <FormMessage />
+                <FormMessage className="text-red-600" />
               </FormItem>
             )}
           />
@@ -250,7 +250,7 @@ const FormThree: React.FC<FormThreeProps> = ({
                 <FormControl>
                   <Input type="email" {...field} />
                 </FormControl>
-                <FormMessage />
+                <FormMessage className="text-red-600" />
               </FormItem>
             )}
           />

@@ -4,8 +4,6 @@ import { redirect } from "next/navigation";
 
 import AuthProvider from "../authprovider";
 import { SignInButton, SignOutButton } from "@/components/buttons";
-import { TableDemo } from "./components/table";
-import { DataTableDemo } from "./components/data-table";
 import { DataTable } from "./components/table/new-table";
 
 import { columns, Clients } from "./components/table/columns";
@@ -48,7 +46,6 @@ const Dashboard = async () => {
         </div>
         <div className="h-[500px]">
           <DataTable columns={columns} data={data} />
-          {/* <TableDemo /> */}
           {/* <DataTableDemo /> */}
         </div>
       </div>

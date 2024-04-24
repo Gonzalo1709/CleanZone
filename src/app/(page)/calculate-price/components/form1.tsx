@@ -25,7 +25,9 @@ import { dataType } from "@/lib/form-interface";
 
 const formSchema = z.object({
   limpiarDespuesDeReforma: z.boolean(),
-  metrosCuadrados: z.coerce.number(),
+  metrosCuadrados: z.coerce
+    .number()
+    .min(1, { message: "Ingresar metros cuadrados" }),
   numeroDeDespachosIndividuales: z.coerce.number(),
   sueloDeMoqueta: z.boolean(),
   limpiezaPeriodicaDeMoqueta: z.boolean(),
@@ -37,7 +39,7 @@ const formSchema = z.object({
   limpiarVajillas: z.boolean(),
   cuartosDeBano: z.boolean(),
   cuartosDeBanoNumber: z.coerce.number(),
-  observaciones: z.string().max(250),
+  observaciones: z.string().max(250, { message: "Máximo 250 caracteres" }),
 });
 
 interface FormOneProps {
@@ -157,7 +159,7 @@ const FormOne: React.FC<FormOneProps> = ({
               <FormControl className="">
                 <Input className={inputStyle} type="number" {...field} />
               </FormControl>
-              <FormMessage />
+              <FormMessage className="text-red-600" />
             </FormItem>
           )}
         />
@@ -382,7 +384,7 @@ const FormOne: React.FC<FormOneProps> = ({
               <FormControl>
                 <Textarea {...field} />
               </FormControl>
-              <FormMessage />
+              <FormMessage className="text-red-600" />
             </FormItem>
           )}
         />
