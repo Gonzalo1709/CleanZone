@@ -1,8 +1,9 @@
 import NextAuth from "next-auth";
-import type { NextAuthOptions } from "next-auth";
+import type { NextAuthOptions, Session } from "next-auth";
 import CognitoProvider from "next-auth/providers/cognito";
 
 export const authOptions: NextAuthOptions = {
+  
   providers: [
     CognitoProvider({
       clientId: process.env.COGNITO_CLIENT_ID!,
@@ -18,8 +19,13 @@ export const authOptions: NextAuthOptions = {
     async signIn({ user, account, profile, email, credentials }) {
       return true;
     },
-    async redirect({ url, baseUrl }) {
-      return '/dashboard';
+    async session({ session, token, user }) {
+      interface CustomSession extends Session {
+        authorizeToken: string;
+      }
+      const customSession: CustomSession = session as unknown as CustomSession;
+      customSession.authorizeToken = (token as any).authorizeToken;
+      return customSession;
     },
   },
   jwt: {

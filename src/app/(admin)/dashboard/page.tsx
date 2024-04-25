@@ -16,25 +16,6 @@ const Dashboard = async () => {
     redirect("/api/auth/signin");
   }
 
-  async function getData() {
-    const res = await fetch(
-      "https://q8y3gkmsnf.execute-api.us-east-1.amazonaws.com/dev/getBookings?TableName=bookings"
-    );
-    const data = await res.json();
-
-    // format data
-    const formattedArrayOfObjects = data.Items.map((obj: any) => {
-      const extractedValues = {};
-      for (const key in obj) {
-        const value = obj[key];
-        //@ts-ignore
-        extractedValues[key] = Object.values(value)[0];
-      }
-      return extractedValues;
-    });
-    return formattedArrayOfObjects;
-  }
-  const data = await getData();
   // console.log(data);
 
   return (
@@ -45,7 +26,7 @@ const Dashboard = async () => {
           {/* <SignOutButton /> */}
         </div>
         <div className="h-[500px]">
-          <DataTable columns={columns} data={data} />
+          <DataTable columns={columns} />
           {/* <DataTableDemo /> */}
         </div>
       </div>

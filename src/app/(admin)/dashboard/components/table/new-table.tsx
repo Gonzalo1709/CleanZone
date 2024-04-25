@@ -36,17 +36,44 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { SignOutButton } from "@/components/buttons";
+import { useSession } from "next-auth/react";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
-  data: TData[];
 }
 
 export function DataTable<TData, TValue>({
   columns,
-  data,
 }: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = React.useState<SortingState>([]);
+
+  const [fetchData, setFetchData] = React.useState<any | undefined>(undefined);
+  const [data, setData] = React.useState<TData[]>([]);
+  const [loading, setLoading] = React.useState(true);
+
+  useEffect(() => {
+    fetch(
+      "https://q8y3gkmsnf.execute-api.us-east-1.amazonaws.com/dev/getBookings?TableName=bookings"
+    )
+      .then((res) => res.json())
+      .then((data) => setFetchData(data));
+  }, []);
+
+  useEffect(() => {
+    if (!fetchData || fetchData === undefined) return;
+    const formattedArrayOfObjects = fetchData.Items.map((obj: any) => {
+      const extractedValues = {};
+      for (const key in obj) {
+        const value = obj[key];
+        //@ts-ignore
+        extractedValues[key] = Object.values(value)[0];
+      }
+      return extractedValues;
+    });
+    setData(formattedArrayOfObjects);
+    setLoading(false);
+  }, [fetchData]);
+
   const table = useReactTable({
     data,
     columns,
@@ -60,6 +87,8 @@ export function DataTable<TData, TValue>({
     },
   });
 
+  const session = useSession();
+
   useEffect(() => {
     setSorting([
       {
@@ -69,8 +98,17 @@ export function DataTable<TData, TValue>({
     ]);
   }, []);
 
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-96 pt-6">
+        <div className="animate-spin rounded-full h-32 w-32 border-2 border-r-0 border-t-0 border-[#14344b]"></div>
+      </div>
+    );
+  }
+
   return (
     <>
+    {() => {console.log(data); console.log(session)}}
       <div className="w-full">
         <div className="flex items-center py-4">
           <Input
@@ -193,3 +231,7 @@ export function DataTable<TData, TValue>({
     </>
   );
 }
+function then(arg0: () => void) {
+  throw new Error("Function not implemented.");
+}
+
