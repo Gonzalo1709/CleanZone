@@ -19,6 +19,9 @@ const authOptions: NextAuthOptions = {
     async signIn({ user, account, profile, email, credentials }) {
       return true;
     },
+    async redirect({ url, baseUrl }) {
+      return '/dashboard';
+    },
     async jwt({ token, user, account, profile, isNewUser }) {
       if (account) {
         token.accessToken = account?.access_token;
