@@ -18,7 +18,7 @@ const ContactUs = () => {
           </h1>
           {/*eslint-disable-next-line react/no-unescaped-entities */}
           <h2 className="text-[#6CA8AC]">
-            Let's create a cleaner space together
+            Let&apos;s create a cleaner space together
           </h2>
 
           <Link href='/calculate-price'>

@@ -61,7 +61,7 @@ const FormThree: React.FC<FormThreeProps> = ({
     if (allowReload && !open) {
       window.location.href = "/";
     }
-  }, [open]);
+  }, [open, allowReload]);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),

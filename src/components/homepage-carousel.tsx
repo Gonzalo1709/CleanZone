@@ -18,15 +18,7 @@ import { ChevronDown } from "lucide-react";
 export default function HomepageCarousel() {
   const [carouselApi, setCarouselApi] = useState<CarouselApi>();
 
-  const { height, width } = useWindowDimensions();
-  const [showArrow, setShowArrow] = useState<boolean>(true);
-
   useEffect(() => {
-    if (height > 1260) {
-      setShowArrow(false);
-    } else {
-      setShowArrow(true);
-    }
 
     if (!carouselApi) {
       return;
@@ -94,9 +86,7 @@ export default function HomepageCarousel() {
           </p>
           <Link href="#calculate" onClick={handleScroll} className="block">
             <ChevronDown
-              className={`opacity-100 absolute bottom-16 md:bottom-5 left-0 right-0 ml-auto mr-auto w-[80px] animate-bounce ${
-                showArrow ? " visible" : " invisible"
-              }`}
+              className={`opacity-100 absolute bottom-16 md:bottom-5 left-0 right-0 ml-auto mr-auto w-[80px] animate-bounce `}
               size={80}
               color="#FDFDFD"
             />
