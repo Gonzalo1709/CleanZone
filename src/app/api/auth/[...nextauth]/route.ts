@@ -2,7 +2,7 @@ import NextAuth from "next-auth";
 import type { DefaultSession, NextAuthOptions, Session } from "next-auth";
 import CognitoProvider from "next-auth/providers/cognito";
 
-export const authOptions: NextAuthOptions = {
+const authOptions: NextAuthOptions = {
   
   providers: [
     CognitoProvider({
