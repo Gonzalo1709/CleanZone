@@ -48,16 +48,52 @@ export function DataTable<TData, TValue>({
   const [sorting, setSorting] = React.useState<SortingState>([]);
 
   const [fetchData, setFetchData] = React.useState<any | undefined>(undefined);
+  const [invalidFetch, setInvalidFetch] = React.useState('');
   const [data, setData] = React.useState<TData[]>([]);
   const [loading, setLoading] = React.useState(true);
+  const session = useSession();
 
   useEffect(() => {
-    fetch(
-      "https://q8y3gkmsnf.execute-api.us-east-1.amazonaws.com/dev/getBookings?TableName=bookings"
-    )
-      .then((res) => res.json())
-      .then((data) => setFetchData(data));
-  }, []);
+    if (!session || session.status !== 'authenticated') return;
+    try {
+      fetch(
+        "https://q8y3gkmsnf.execute-api.us-east-1.amazonaws.com/dev/getBookings",
+        {
+          headers: {
+            Authorization: (session as any).data?.token?.id_token,
+          },
+        }
+      )
+        .then((res) => {
+          if (!res.ok) {
+            console.log('res', res)
+            throw new Error(res.body?.toString());
+          }
+          return res.json();
+        })
+        .then((data) => {
+          if (data.message === "Unauthorized") {
+            setInvalidFetch("unauthorized");
+            setLoading(false);
+            console.log("User is not authorized to view this data.");
+            return;
+          }
+          if (data.message) {
+            setInvalidFetch(data.message);
+            setLoading(false);
+            return;
+          }
+          setFetchData(data);
+        })
+        .catch((error) => {
+          setInvalidFetch(error.message);
+          setLoading(false);
+        });
+    } catch (error: any) {
+      setInvalidFetch(error.message);
+      setLoading(false);
+    }
+  }, [session]);
 
   useEffect(() => {
     if (!fetchData || fetchData === undefined) return;
@@ -87,7 +123,6 @@ export function DataTable<TData, TValue>({
     },
   });
 
-  const session = useSession();
 
   useEffect(() => {
     setSorting([
@@ -100,8 +135,44 @@ export function DataTable<TData, TValue>({
 
   if (loading) {
     return (
+      <>
+        <div className="flex h-0 w-[100%] justify-end">
+          <div className="mt-3">
+            <SignOutButton />
+          </div>
+        </div>
+        <div className="flex justify-center items-center h-96 pt-6">
+          <div className="animate-spin rounded-full h-32 w-32 border-2 border-r-0 border-t-0 border-[#14344b]"></div>
+        </div>
+      </>
+    );
+  }
+
+  if (session.status !== "authenticated" || invalidFetch === 'unauthorized') {
+    return (
       <div className="flex justify-center items-center h-96 pt-6">
-        <div className="animate-spin rounded-full h-32 w-32 border-2 border-r-0 border-t-0 border-[#14344b]"></div>
+        <div className="text-center">
+          <h1 className="text-2xl font-semibold">You are not authorized to view this content.</h1>
+          <p className="text-muted-foreground mb-2">
+            Your session token might have expired. Please sign in again. <br/>
+            If the problem persists, contact an administrator.
+          </p>
+          <SignOutButton />
+        </div>
+      </div>
+    );
+  }
+
+  if (invalidFetch !== '') {
+    return (
+      <div className="flex justify-center items-center h-96 pt-6">
+        <div className="text-center">
+          <h1 className="text-2xl font-semibold">An error occurred while fetching data.</h1>
+          <p className="text-muted-foreground mb-2">
+            {invalidFetch}
+          </p>
+          <SignOutButton />
+        </div>
       </div>
     );
   }

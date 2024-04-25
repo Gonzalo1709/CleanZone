@@ -1,5 +1,5 @@
 import NextAuth from "next-auth";
-import type { NextAuthOptions, Session } from "next-auth";
+import type { DefaultSession, NextAuthOptions, Session } from "next-auth";
 import CognitoProvider from "next-auth/providers/cognito";
 
 export const authOptions: NextAuthOptions = {
@@ -19,13 +19,16 @@ export const authOptions: NextAuthOptions = {
     async signIn({ user, account, profile, email, credentials }) {
       return true;
     },
-    async session({ session, token, user }) {
-      interface CustomSession extends Session {
-        authorizeToken: string;
+    async jwt({ token, user, account, profile, isNewUser }) {
+      if (account) {
+        token.accessToken = account?.access_token;
+        token.id_token = account?.id_token;
       }
-      const customSession: CustomSession = session as unknown as CustomSession;
-      customSession.authorizeToken = (token as any).authorizeToken;
-      return customSession;
+      return token;
+    },
+    async session({ session, token, user }): Promise<Session | DefaultSession> {
+      (session as any).token = token;
+      return session;
     },
   },
   jwt: {

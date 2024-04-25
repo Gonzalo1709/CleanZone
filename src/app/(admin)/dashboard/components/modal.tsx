@@ -15,7 +15,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
 import { dataType } from "@/lib/form-interface";
-import React, { useState } from "react";
+import React, { use, useState } from "react";
 
 import { form1, form2, form3 } from "@/lib/form-interface";
 
@@ -23,17 +23,24 @@ import axios from "axios";
 
 import { ToastAction } from "@/components/ui/toast";
 import { useToast } from "@/components/ui/use-toast";
+import { useSession } from "next-auth/react";
 
 // @ts-ignore
 export const DialogDemo: React.FC<dataType> = ({ info }) => {
   const [open, setOpen] = useState<boolean>(false);
   const { toast } = useToast();
+  const session = useSession();
 
   async function deleteEntry() {
     axios
       .delete(
-        "https://q8y3gkmsnf.execute-api.us-east-1.amazonaws.com/dev/handleDeleteBooking",
-        { params: { branch: info.branch, id: info.id } }
+      "https://q8y3gkmsnf.execute-api.us-east-1.amazonaws.com/dev/handleDeleteBooking",
+      { 
+        params: { branch: info.branch, id: info.id },
+        headers: {
+        authorization: (session as any).data?.token?.id_token,
+        }
+      }
       )
       .then((res) => {
         // console.log(res);
